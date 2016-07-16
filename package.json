@@ -1,7 +1,7 @@
 {
   "name": "peter1994",
   "version": "1.0.2",
-  "description": "Person Web App blog ",
+  "description": "UI to create sections for felix",
   "main": "index.js",
   "scripts": {
     "start": "node ./server.js",
@@ -13,11 +13,9 @@
     "url": "git+https://github.com/colemanator/Asuran.git"
   },
   "keywords": [
-    "blog",
+    "Felix",
     "react",
-    "redux",
     "koa",
-    "rethinkdb",
     "node",
     "webpack"
   ],

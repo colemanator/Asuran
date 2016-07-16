@@ -3,17 +3,19 @@
  */
 'use strict';
 
+//Require modules
 var koa = require('koa');
 var compress = require('koa-compress');
 var logger = require('koa-logger');
 var serve = require('koa-static');
 
+//Create app
 var app = koa();
 
+//Use logger 
 app.use(logger());
-app.use(serve('../public',{maxage: 6}));
 
-
+//Compress files before sending
 app.use(compress({
     filter: function (content_type) {
         return /text/i.test(content_type)
@@ -22,7 +24,8 @@ app.use(compress({
     flush: require('zlib').Z_SYNC_FLUSH
 }));
 
-app.use(serve('./client/public/'));
+//Static public directory
+app.use(serve('./client/public/',{maxage: 6}));
 
 app.listen(3000);
 
