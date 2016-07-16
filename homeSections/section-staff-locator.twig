@@ -1,0 +1,20 @@
+<section class="multisection-section section-staff col-sm-6 {{ section.size }} {{ section.colors }}">
+	<div class="l-table">
+		<div class="l-table-row">
+			<div class="l-table-cell">
+				<div class="section-staff-container">
+					{% if section.staff %}
+						{% if section.title %}<h5><span class='icon-search {{ section['highlight-color'] }}'>&nbsp;</span><br />
+						{{ section.title|raw }}</h5>{% endif %}
+						<select id="section-staff-select-select2">
+			 				<option></option>
+				 			{% for staff_member in section.staff if staff_member.title %}
+				 				<option value='{{ staff_member.url|raw }}'>{{ staff_member.title|raw }}</option>
+				 			{% endfor %}
+						</select>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

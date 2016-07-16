@@ -1,0 +1,19 @@
+{% if section.posts|length > 0 and section.count > 0 %}
+<section class="multisection-section section-listing-slider brand-fg col-sm-6 {{ section.size }}">
+  {% for post in section.posts %}
+    <div class="rsContent">
+      <a class="rsImg" href="{{ post.meta['images'][0]['800x600']?post.meta['images'][0]['800x600']:post.meta['images'][0]['full'] }}"></a>
+      <a class="rsLink" href="{{ post.url }}"></a>
+      <div class="overlay
+        {% if site.banner_style == 'banner' and (post.meta['underOffer'] == 1 or post.meta.status == 'Leased' or post.meta.status == 'Sold') %}
+        overlay-adjust-banner
+        {% endif %}
+        ">
+        <p>{{ post.meta.addressSuburb }} / {{ post.meta.price }}</p>
+      </div>
+      {% include 'Website/Views/single-listings-banner.twig' with post %}
+    </div>
+  {% endfor %}
+</section>
+{% endif %}
+

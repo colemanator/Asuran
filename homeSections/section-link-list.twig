@@ -1,0 +1,28 @@
+{% if section.colors == 'default' %}
+	{% set link_color = 'brand-fg' %}
+{% else %}
+	{% set link_color = section.colors %}
+{% endif %}
+
+
+<section class="multisection-section section-link-list col-sm-6 {{ section.size }} {{ section.colors }}">
+	<div class="l-table">
+		<div class="l-table-row">
+            <div class="l-table-cell" {% if section.title %}style="vertical-align: top"{% endif %}>
+            <div class="section-link-list-container">
+                    {% if section.title %}
+                        <h5 class='section-title-text-heading'>{{ section.title|raw }}</h5>
+                        <div class='divider {{ section['highlight-color'] }}'>&nbsp;</div>
+                    {% endif %}
+					{% if section.list %}
+						<ul class="{{ link_color }}">
+				 			{% for link in section.list if link.text and link.href %}
+				 			<li><h5 class='section-link-list-item'><a href='{{ link.href|raw }}' class='link-list-anchor'><div class='arrow-icon-char'></div><div class='link-list-anchor-text'>{{ link.text|raw }}</div></a></h5></li>
+				 			{% endfor %}
+				 		</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

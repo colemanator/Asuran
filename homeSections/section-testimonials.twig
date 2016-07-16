@@ -1,0 +1,15 @@
+<section class="multisection-section section-testimonial-slider-bg {{ section.colors }} {{ section.size?section.size:'col-sm-6' }}">
+	<div class="{{ section['highlight-color'] }} section-testimonial-slider ">
+		{% for post in section.posts %}
+		<div class="{{ section.colors }} l-table">
+			<div class="l-table-row">
+				<div class="l-table-cell">
+					<div class="section-testimonial-slider-title">{{ post.title }}</div>
+					<p class="section-testimonial-slider-excerpt">{{ post.excerpt|raw|nl2br }}</p>
+					<div class="section-testimonial-slider-author">{{ post.meta.testimonialAuthor }}</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
