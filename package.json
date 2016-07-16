@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/colemanator/Peter1994Blog.git"
+    "url": "git+https://github.com/colemanator/Asuran.git"
   },
   "keywords": [
     "blog",
@@ -24,9 +24,9 @@
   "author": "Peter Coleman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/colemanator/Peter1994Blog/issues"
+    "url": "https://github.com/colemanator/Asuran/issues"
   },
-  "homepage": "https://github.com/colemanator/Peter1994Blog#readme",
+  "homepage": "https://github.com/colemanator/Asuran#readme",
   "dependencies": {
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
