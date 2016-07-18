@@ -5,11 +5,6 @@
 
 import React from 'react';
 import {render} from 'react-dom';
+import {agencyDetailsSection} from '../app/sections.jsx'
 
-class App extends React.Component {
-    render () {
-        return <p> Hello React!</p>;
-    }
-}
-
-render(<App/>, document.getElementById('app'));
+render(React.createElement(agencyDetailsSection,{size:'md-12',colour:' brand-style-fg'}),document.getElementById('app'));
