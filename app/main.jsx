@@ -3,6 +3,8 @@
  */
 'use strict';
 
+require('/Users/Peter/PhpstormProjects/Asuran/client/less/poxyTheme.less');
+
 import React from 'react';
 import {render} from 'react-dom';
 import {agencyDetailsSection} from '../app/sections.jsx'
