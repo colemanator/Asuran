@@ -12,8 +12,8 @@ import {render} from 'react-dom';
 var agencyDetailsSection = React.createClass({
 
     propTypes: {
-        size: React.propTypes.string,
-        colour: React.propTypes.string
+        size: React.PropTypes.string,
+        colour: React.PropTypes.string
     },
 
     getDefaultProps(){

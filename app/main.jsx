@@ -3,7 +3,7 @@
  */
 'use strict';
 
-require('/Users/Peter/PhpstormProjects/Asuran/client/less/poxyTheme.less');
+require('/Users/Peter/PhpstormProjects/Asuran/client/less/main.less');
 
 import React from 'react';
 import {render} from 'react-dom';
