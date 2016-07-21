@@ -47,6 +47,22 @@ var agencyDetailsSection = React.createClass({
     }
 });
 
+/**
+ * This grid will contain all sections, it is responsible for creating, editing and deleting child sections
+ * IT WILL ALSO HOLD ALL STATE for sections below. It can be initialised with an object containing the information to
+ * create specific sections or it can start from scratch.
+ * @type {*|Function}
+ */
+var grid = React.createClass({
+
+    propTypes: {
+        sectionsObject: React.PropTypes.object
+    }
+
+    //render initial state will be a flex div with a side menu and a mulit section to contain sections 
+
+});
+
 
 
 

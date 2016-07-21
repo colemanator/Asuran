@@ -42,9 +42,9 @@ var config = {
     plugins: [
         // extract inline css into separate 'styles.css'
         new ExtractTextPlugin( '../css/styles.css', { allChunks: true }),
-        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.DedupePlugin()
     ],
-    devtool: 'source-map',
+    devtool: 'source-map'
 
 };  
 
