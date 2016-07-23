@@ -12,20 +12,23 @@ import {render} from 'react-dom';
 var agencyDetailsSection = React.createClass({
 
     propTypes: {
-        size: React.PropTypes.string,
-        colour: React.PropTypes.string
+        sectionObject: React.PropTypes.object
     },
+    
 
     getDefaultProps(){
         return {
-            size: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3',
-            colour: 'header-colors'
+            sectionObject: {
+                id: 'agency-details',
+                size: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3',
+                colour: 'header-colors'
+            }
         }
     },
 
     render(){
 
-        var defaultClassNames = "multisection-section section-agency-details col-sm-6 " + this.props.size + this.props.colour;
+        var defaultClassNames = "multisection-section section-agency-details col-sm-6 " + this.props.sectionObject.size + this.props.sectionObject.colour;
 
         return (
             <section className={defaultClassNames}>
@@ -47,21 +50,7 @@ var agencyDetailsSection = React.createClass({
     }
 });
 
-/**
- * This grid will contain all sections, it is responsible for creating, editing and deleting child sections
- * IT WILL ALSO HOLD ALL STATE for sections below. It can be initialised with an object containing the information to
- * create specific sections or it can start from scratch.
- * @type {*|Function}
- */
-var grid = React.createClass({
 
-    propTypes: {
-        sectionsObject: React.PropTypes.object
-    }
-
-    //render initial state will be a flex div with a side menu and a mulit section to contain sections 
-
-});
 
 
 
