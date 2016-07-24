@@ -5,7 +5,8 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import {agencyDetailsSection} from '../app/sections.jsx';
+import {AgencyDetailsSection} from '../app/sections.jsx';
+import  {Editor} from '../app/Editor.jsx'
 
 /**
  * This grid will contain all sections, it is responsible for creating, editing and deleting child sections
@@ -13,7 +14,7 @@ import {agencyDetailsSection} from '../app/sections.jsx';
  * create specific sections or it can start from scratch.
  * @type {*|Function}
  */
-var grid = React.createClass({
+var Grid = React.createClass({
 
     propTypes: {
         sectionsObject: React.PropTypes.array,
@@ -25,6 +26,7 @@ var grid = React.createClass({
         if(this.props.sectionsObject) {
             return (
                 <main>
+                    <Editor selectedObject={this.props.selectedObject}/>
                     <div className="home-multisection-widget row">
                         {this.renderSections()}
                     </div>
@@ -51,7 +53,7 @@ var grid = React.createClass({
         for(let i = 0; i < this.props.sectionsObject.length; i++ ){
             switch(this.props.sectionsObject[i].id) {
                 case 'agency-details':
-                    sectionsArray.push(React.createElement(agencyDetailsSection, {key: i, sectionObject: this.props.sectionsObject[i]}));
+                    sectionsArray.push(<AgencyDetailsSection key={i} sectionObject={this.props.sectionsObject[i]}/>);
                     break;
                 case 'agency-map':
                     sectionsArray.push(<agencyMapSection/>);
@@ -99,4 +101,4 @@ var grid = React.createClass({
 
 });
 
-export {grid};
+export {Grid};

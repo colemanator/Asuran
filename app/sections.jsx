@@ -9,7 +9,7 @@ import {render} from 'react-dom';
 /**
  * Section for Agency details
  */
-var agencyDetailsSection = React.createClass({
+var AgencyDetailsSection = React.createClass({
 
     propTypes: {
         sectionObject: React.PropTypes.object
@@ -55,4 +55,4 @@ var agencyDetailsSection = React.createClass({
 
 
 
-export {agencyDetailsSection};
+export {AgencyDetailsSection};

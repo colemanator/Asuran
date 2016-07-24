@@ -7,8 +7,7 @@ require('/Users/Peter/PhpstormProjects/Asuran/client/less/main.less');
 
 import React from 'react';
 import {render} from 'react-dom';
-import {grid} from '../app/grid.jsx'
-import {agencyDetailsSection} from '../app/sections.jsx'
+import {Grid} from '../app/Grid.jsx'
 
 var testObject = [
     {
@@ -19,4 +18,4 @@ var testObject = [
 
 ];
 
-render(React.createElement(grid,{sectionsObject: testObject}),document.getElementById('app'));
+render(React.createElement(Grid,{sectionsObject: testObject}),document.getElementById('app'));
