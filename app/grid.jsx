@@ -16,9 +16,12 @@ import  {Editor} from '../app/Editor.jsx'
  */
 var Grid = React.createClass({
 
-    propTypes: {
-        sectionsObject: React.PropTypes.array,
-        selectedObject: React.PropTypes.object
+    getInitialState(){
+        return {
+            //:todo maybe use a function to get the object & rename sectionsObject since it isn't an object but an array
+            sectionsObject: this.props.sectionsObject,
+            selectedObjectKey: this.props.selectedObjectKey
+        }
     },
 
     render(){
@@ -26,7 +29,7 @@ var Grid = React.createClass({
         if(this.props.sectionsObject) {
             return (
                 <main>
-                    <Editor selectedObject={this.props.selectedObject}/>
+                    <Editor selectedObjectKey={this.state.selectedObjectKey} sectionsObject={this.state.sectionsObject} onEdit={this.handleEdit}/>
                     <div className="home-multisection-widget row">
                         {this.renderSections()}
                     </div>
@@ -50,10 +53,10 @@ var Grid = React.createClass({
 
         var sectionsArray = [];
 
-        for(let i = 0; i < this.props.sectionsObject.length; i++ ){
-            switch(this.props.sectionsObject[i].id) {
+        for(let i = 0; i < this.state.sectionsObject.length; i++ ){
+            switch(this.state.sectionsObject[i].id) {
                 case 'agency-details':
-                    sectionsArray.push(<AgencyDetailsSection key={i} sectionObject={this.props.sectionsObject[i]}/>);
+                    sectionsArray.push(<AgencyDetailsSection key={i} sectionObject={this.state.sectionsObject[i]}/>);
                     break;
                 case 'agency-map':
                     sectionsArray.push(<agencyMapSection/>);
@@ -94,10 +97,12 @@ var Grid = React.createClass({
         }
 
         return sectionsArray;
+    },
+
+    handleEdit(key, event){
+        this.state.sectionsObject[key][event.target.name] = event.target.value;
+        this.setState({sectionsObject:  this.state.sectionsObject});
     }
-
-
-    //render initial state will be a flex div with a side menu and a mulit section to contain sections
 
 });
 

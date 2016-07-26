@@ -9,20 +9,55 @@ import {render} from 'react-dom';
 var Editor = React.createClass({
 
     propTypes:{
-      sectionObject: React.PropTypes.object
+        selectedObjectKey: React.PropTypes.number,
+        sectionsObject: React.PropTypes.array,
+        onEdit: React.PropTypes.func
     },
 
     render(){
         return (
             <div className='menu-wrapper'>
-                test
-                /*return a form with inputs and selections for each input avaibale on section*/
+                <h2>Editor</h2>
+                {this.renderOptions()}
             </div>
         );
 
+    },
+
+    renderOptions(){
+
+        var editorContentArray = [];
+        var key = 0;
+
+        var selectedObject =  this.props.sectionsObject[this.props.selectedObjectKey];
+
+        for(var propertyName in selectedObject){
+
+            if(propertyName == 'id'){
+                editorContentArray.push(
+                    <h3 key={key}>{selectedObject[propertyName]}</h3>
+                );
+            } else {
+
+                editorContentArray.push(
+                    <input type="text" key={key} defaultValue={selectedObject[propertyName]} name={propertyName} onChange={this.handleChange}/>
+                );
+            }
+
+            key++
+        }
+
+        return editorContentArray;
+    },
+
+    handleChange(event){
+        this.props.onEdit(this.props.selectedObjectKey, event)
     }
 
+
 });
+
+
 
 export {Editor}
 

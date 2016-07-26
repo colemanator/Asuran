@@ -18,4 +18,4 @@ var testObject = [
 
 ];
 
-render(React.createElement(Grid,{sectionsObject: testObject}),document.getElementById('app'));
+render(React.createElement(Grid,{sectionsObject: testObject, selectedObjectKey: 0}),document.getElementById('app'));
