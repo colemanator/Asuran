@@ -56,7 +56,7 @@ var Grid = React.createClass({
         for(let i = 0; i < this.state.sectionsObject.length; i++ ){
             switch(this.state.sectionsObject[i].id) {
                 case 'agency-details':
-                    sectionsArray.push(<AgencyDetailsSection key={i} index={i} sectionObject={this.state.sectionsObject[i]}/>);
+                    sectionsArray.push(<AgencyDetailsSection key={i} index={i} onSectionClick={this.handleSectionClick} sectionObject={this.state.sectionsObject[i]}/>);
                     break;
                 case 'agency-map':
                     sectionsArray.push(<agencyMapSection/>);
@@ -102,6 +102,11 @@ var Grid = React.createClass({
     handleEdit(key, event){
         this.state.sectionsObject[key][event.target.name] = event.target.value;
         this.setState({sectionsObject:  this.state.sectionsObject});
+    },
+
+    handleSectionClick(index){
+        this.state.selectedObjectKey = index;
+        this.setState({selectedObjectKey: this.state.selectedObjectKey})
     }
 
 });

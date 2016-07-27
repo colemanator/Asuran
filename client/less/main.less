@@ -44,3 +44,37 @@ main{
 .section-settings{
   padding: 0 20px;
 }
+
+.select-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  display: flex;
+  border: black solid 1px;
+
+  &:hover{
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .center-flex-item{
+    display: inline-block;
+    margin: auto;
+    font-size: 28px;
+  }
+
+}
+
+.selected{
+  border: #ffdd20 solid 1px;
+
+  .select-overlay{
+    display: none;
+  }
+
+}

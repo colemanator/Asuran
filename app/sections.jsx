@@ -13,7 +13,8 @@ var AgencyDetailsSection = React.createClass({
 
     propTypes: {
         sectionObject: React.PropTypes.object,
-        index: React.PropTypes.number
+        index: React.PropTypes.number,
+        onSectionClick: React.PropTypes.func
     },
     
 
@@ -33,6 +34,9 @@ var AgencyDetailsSection = React.createClass({
 
         return (
             <section className={defaultClassNames}>
+                <div className="select-overlay" onClick={this.handleClick}>
+                    <div className="center-flex-item"> Click to Edit </div>
+                </div>
                 <div className="l-table section-agency-details-table">
                     <div className="l-table-row">
                         <div className="l-table-cell">
@@ -48,6 +52,10 @@ var AgencyDetailsSection = React.createClass({
                 </div>
             </section>
         );
+    },
+    
+    handleClick(event){
+        this.props.onSectionClick(this.props.index);
     }
 });
 
