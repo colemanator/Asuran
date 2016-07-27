@@ -17,8 +17,10 @@ var Editor = React.createClass({
     render(){
         return (
             <div className='menu-wrapper'>
-                <h2>Editor</h2>
-                {this.renderOptions()}
+                <h2 id="editor-title">Editor</h2>
+                <div className="section-settings">
+                    {this.renderOptions()}
+                </div>
             </div>
         );
 
@@ -35,7 +37,7 @@ var Editor = React.createClass({
 
             if(propertyName == 'id'){
                 editorContentArray.push(
-                    <h3 key={key}>{selectedObject[propertyName]}</h3>
+                    <h3 className="section-type-title" key={key}>{selectedObject[propertyName]}</h3>
                 );
             } else {
 

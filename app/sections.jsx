@@ -12,7 +12,8 @@ import {render} from 'react-dom';
 var AgencyDetailsSection = React.createClass({
 
     propTypes: {
-        sectionObject: React.PropTypes.object
+        sectionObject: React.PropTypes.object,
+        index: React.PropTypes.number
     },
     
 

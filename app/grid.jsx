@@ -56,7 +56,7 @@ var Grid = React.createClass({
         for(let i = 0; i < this.state.sectionsObject.length; i++ ){
             switch(this.state.sectionsObject[i].id) {
                 case 'agency-details':
-                    sectionsArray.push(<AgencyDetailsSection key={i} sectionObject={this.state.sectionsObject[i]}/>);
+                    sectionsArray.push(<AgencyDetailsSection key={i} index={i} sectionObject={this.state.sectionsObject[i]}/>);
                     break;
                 case 'agency-map':
                     sectionsArray.push(<agencyMapSection/>);
