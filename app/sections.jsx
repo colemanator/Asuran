@@ -14,7 +14,8 @@ var AgencyDetailsSection = React.createClass({
     propTypes: {
         sectionObject: React.PropTypes.object,
         index: React.PropTypes.number,
-        onSectionClick: React.PropTypes.func
+        onSectionClick: React.PropTypes.func,
+        selectedObjectKey: React.PropTypes.number
     },
     
 
@@ -30,10 +31,15 @@ var AgencyDetailsSection = React.createClass({
 
     render(){
 
-        var defaultClassNames = "multisection-section section-agency-details col-sm-6 " + this.props.sectionObject.size + this.props.sectionObject.colour;
+        var classNames = "multisection-section section-agency-details col-sm-6 ";
+        classNames += this.props.sectionObject.size + this.props.sectionObject.colour;
+
+        if(this.props.index == this.props.selectedObjectKey){
+            classNames += ' selected';
+        }
 
         return (
-            <section className={defaultClassNames}>
+            <section className={classNames}>
                 <div className="select-overlay" onClick={this.handleClick}>
                     <div className="center-flex-item"> Click to Edit </div>
                 </div>
