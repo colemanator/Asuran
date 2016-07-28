@@ -8,6 +8,7 @@ require('/Users/Peter/PhpstormProjects/Asuran/client/less/main.less');
 import React from 'react';
 import {render} from 'react-dom';
 import {Grid} from '../app/Grid.jsx'
+import {Sections} from '../app/sectionsModel';
 
 var testObject = [
     {
@@ -22,5 +23,8 @@ var testObject = [
     }
 
 ];
+
+//:todo find less hacky way of creating the object link.. maybe
+testObject.__proto__ = Sections;
 
 render(React.createElement(Grid,{sectionsObject: testObject, selectedObjectKey: 0}),document.getElementById('app'));
