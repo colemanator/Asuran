@@ -15,6 +15,11 @@ import  {Editor} from '../app/Editor.jsx'
  * @type {*|Function}
  */
 var Grid = React.createClass({
+    
+    propTypes:{
+        sectionsObject: React.PropTypes.object,
+        sectionsObjectKey: React.PropTypes.number
+    },
 
     getInitialState(){
         return {
@@ -26,10 +31,10 @@ var Grid = React.createClass({
 
     render(){
 
-        if(this.props.sectionsObject) {
+        if(this.props.sectionsObject.sections) {
             return (
                 <main>
-                    <Editor selectedObjectKey={this.state.selectedObjectKey} sectionsObject={this.state.sectionsObject} onEdit={this.handleEdit}/>
+                    <Editor selectedObjectKey={this.state.selectedObjectKey} sectionsObject={this.state.sectionsObject.sections} onEdit={this.handleEdit}/>
                     <div className="home-multisection-widget row">
                         {this.renderSections()}
                     </div>
@@ -53,10 +58,10 @@ var Grid = React.createClass({
 
         var sectionsArray = [];
 
-        for(let i = 0; i < this.state.sectionsObject.length; i++ ){
-            switch(this.state.sectionsObject[i].id) {
+        for(let i = 0; i < this.state.sectionsObject.sections.length; i++ ){
+            switch(this.state.sectionsObject.sections[i].id) {
                 case 'agency-details':
-                    sectionsArray.push(<AgencyDetailsSection key={i} index={i} selectedObjectKey={this.state.selectedObjectKey} onSectionClick={this.handleSectionClick} sectionObject={this.state.sectionsObject[i]}/>);
+                    sectionsArray.push(<AgencyDetailsSection key={i} index={i} selectedObjectKey={this.state.selectedObjectKey} onSectionClick={this.handleSectionClick} sectionObject={this.state.sectionsObject.sections[i]}/>);
                     break;
                 case 'agency-map':
                     sectionsArray.push(<agencyMapSection/>);
@@ -100,7 +105,7 @@ var Grid = React.createClass({
     },
 
     handleEdit(key, event){
-        this.state.sectionsObject[key][event.target.name] = event.target.value;
+        this.state.sectionsObject.sections[key][event.target.name] = event.target.value;
         this.setState({sectionsObject:  this.state.sectionsObject});
     },
 

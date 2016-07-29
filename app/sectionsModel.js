@@ -5,32 +5,36 @@
  */
 'use strict';
 
- var Sections = {
-     create(){
+var Sections = {
+    create(jsonString){
+        if(!this.hasOwnProperty('sections')){
+            this.sections = {
+                id: 'empty'
+            };
+        }
+    },
 
-     },
+    import(){
 
-     import(){
+    },
 
-     },
+    export(){
 
-     export(){
+    },
 
-     },
+    add(){
 
-     add(){
+    },
 
-     },
+    delete(){
 
-     delete(){
+    },
 
-     },
-
-     move(oldIndex, newIndex){
-         if(oldIndex < this.length || newIndex < this.length) {
-             this.splice(newIndex, 0, this.splice(oldIndex, 1)[0]);
-         }
-     }
- };
+    move(oldIndex, newIndex){
+        if (oldIndex < this.length || newIndex < this.length) {
+            this.splice(newIndex, 0, this.splice(oldIndex, 1)[0]);
+        }
+    }
+};
 
 export {Sections};
