@@ -31,8 +31,9 @@ var Sections = {
     },
 
     move(oldIndex, newIndex){
-        if (oldIndex < this.length || newIndex < this.length) {
-            this.splice(newIndex, 0, this.splice(oldIndex, 1)[0]);
+        if (oldIndex > 0 || oldIndex <= this.sections.length || newIndex > 0 || newIndex <= this.sections.length) {
+            this.sections.splice(newIndex, 0, this.sections.splice(oldIndex, 1)[0]);
+            return true;
         }
     }
 };

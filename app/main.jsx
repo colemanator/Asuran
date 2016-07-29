@@ -26,6 +26,4 @@ var testObject = Object.create(Sections);
 
     ];
 
-debugger;
-
 render(React.createElement(Grid,{sectionsObject: testObject, selectedObjectKey: 0}),document.getElementById('app'));

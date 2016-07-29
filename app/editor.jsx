@@ -11,7 +11,8 @@ var Editor = React.createClass({
     propTypes:{
         selectedObjectKey: React.PropTypes.number,
         sectionsObject: React.PropTypes.array,
-        onEdit: React.PropTypes.func
+        onEdit: React.PropTypes.func,
+        onEditorPositionClick: React.PropTypes.func
     },
 
     render(){
@@ -21,6 +22,11 @@ var Editor = React.createClass({
                 <div className="section-settings">
                     {this.renderOptions()}
                 </div>
+                <div className="section-position">
+                    <div className="button left" onClick={this.handlePositionClick}>Left</div>
+                    <div className="button right"onClick={this.handlePositionClick}>Right</div>
+                </div>
+
             </div>
         );
 
@@ -54,6 +60,15 @@ var Editor = React.createClass({
 
     handleChange(event){
         this.props.onEdit(this.props.selectedObjectKey, event)
+    },
+
+    handlePositionClick(event){
+        if(event.target.className == 'right'){
+            this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey+1);
+        } else {
+            this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey-1);
+        }
+
     }
 
 
