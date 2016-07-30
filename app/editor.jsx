@@ -16,6 +16,7 @@ var Editor = React.createClass({
         onEditorAddClick: React.PropTypes.func
     },
 
+    //:todo Add a way to change the section id
     render(){
         return (
             <div className='menu-wrapper'>

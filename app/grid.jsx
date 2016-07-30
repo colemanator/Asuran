@@ -23,7 +23,6 @@ var Grid = React.createClass({
 
     getInitialState(){
         return {
-            //:todo maybe use a function to get the object & rename sectionsObject since it isn't an object but an array
             sectionsObject: this.props.sectionsObject,
             selectedObjectKey: this.props.selectedObjectKey
         }

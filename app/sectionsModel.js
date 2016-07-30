@@ -25,6 +25,7 @@ var Sections = {
     },
 
     add(){
+        //todo: Change to add empty Section
         this.sections.push(
             {
                 id: 'agency-details',

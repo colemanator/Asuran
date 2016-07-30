@@ -66,6 +66,7 @@ var AgencyDetailsSection = React.createClass({
 });
 
 
+//todo: Finish creating empty section component
 var Empty = React.createClass({
     
     propTypes:{
