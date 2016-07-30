@@ -6,7 +6,7 @@
 'use strict';
 
 var Sections = {
-    create(jsonString){
+    create(){
         if(!this.hasOwnProperty('sections')){
             this.sections = [
                 {

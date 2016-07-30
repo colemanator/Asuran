@@ -5,7 +5,7 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import {AgencyDetailsSection} from '../app/sections.jsx';
+import {AgencyDetailsSection, Empty} from '../app/sections.jsx';
 import  {Editor} from '../app/Editor.jsx'
 
 /**
@@ -100,7 +100,9 @@ var Grid = React.createClass({
                 case 'video-link':
                     sectionsArray.push(<videoLinkSection/>);
                     break;
-
+                case 'empty':
+                    sectionsArray.push(<Empty key={i} index={i} selectedObjectKey={this.state.selectedObjectKey} onSectionClick={this.handleSectionClick}/>);
+                    break;
             }
 
         }

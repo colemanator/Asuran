@@ -60,24 +60,39 @@ var AgencyDetailsSection = React.createClass({
         );
     },
     
-    handleClick(event){
+    handleClick(){
         this.props.onSectionClick(this.props.index);
     }
 });
 
 
-//todo: Finish creating empty section component
 var Empty = React.createClass({
     
     propTypes:{
-        sectionObject: React.PropTypes.object,
         index: React.PropTypes.number,
         onSectionClick: React.PropTypes.func,
         selectedObjectKey: React.PropTypes.number
     },
 
     render(){
-        return;
+
+        var classNames = 'multisection-section section-agency-details col-sm-6 col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3';
+
+        if(this.props.index == this.props.selectedObjectKey){
+            classNames += ' selected';
+        }
+        
+        return(
+            <section className={classNames}>
+                <div className="select-overlay empty" onClick={this.handleClick}>
+                    <div className="center-flex-item"> Click to Edit</div>
+                </div>
+            </section>
+        );
+    },
+
+    handleClick(){
+        this.props.onSectionClick(this.props.index);
     }
     
 });
@@ -87,4 +102,4 @@ var Empty = React.createClass({
 
 
 
-export {AgencyDetailsSection};
+export {AgencyDetailsSection, Empty};
