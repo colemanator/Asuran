@@ -23,8 +23,9 @@ var Editor = React.createClass({
                     {this.renderOptions()}
                 </div>
                 <div className="section-position">
+                    <h3>Shift Position</h3>
                     <div className="button left" onClick={this.handlePositionClick}>Left</div>
-                    <div className="button right"onClick={this.handlePositionClick}>Right</div>
+                    <div className="button right"onClick={this.handlePositionClick.bind(this, true)}>Right</div>
                 </div>
 
             </div>
@@ -62,8 +63,8 @@ var Editor = React.createClass({
         this.props.onEdit(this.props.selectedObjectKey, event)
     },
 
-    handlePositionClick(event){
-        if(event.target.className == 'right'){
+    handlePositionClick(event,right){
+        if(right){
             this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey+1);
         } else {
             this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey-1);

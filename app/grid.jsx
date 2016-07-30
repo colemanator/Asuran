@@ -118,8 +118,8 @@ var Grid = React.createClass({
         var sucsess = this.state.sectionsObject.move(currentIndex, newIndex);
         if(sucsess) {
             this.state.selectedObjectKey = newIndex;
+            this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: this.state.selectedObjectKey})
         }
-        this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: this.state.selectedObjectKey})
     }
 
 });

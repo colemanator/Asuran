@@ -8,9 +8,11 @@
 var Sections = {
     create(jsonString){
         if(!this.hasOwnProperty('sections')){
-            this.sections = {
-                id: 'empty'
-            };
+            this.sections = [
+                {
+                    id: 'empty'
+                }
+            ];
         }
     },
 
@@ -31,9 +33,11 @@ var Sections = {
     },
 
     move(oldIndex, newIndex){
-        if (oldIndex > 0 || oldIndex <= this.sections.length || newIndex > 0 || newIndex <= this.sections.length) {
+        if (oldIndex >= 0 && oldIndex < this.sections.length && newIndex >= 0 && newIndex < this.sections.length) {
             this.sections.splice(newIndex, 0, this.sections.splice(oldIndex, 1)[0]);
             return true;
+        } else {
+            return false;
         }
     }
 };

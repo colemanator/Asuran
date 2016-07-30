@@ -4,8 +4,8 @@
 @medium-device: 992px;
 @large-device: 1200px;
 
-
-
+/////// Import Other less files ///////
+@import 'theme';
 
 main{
   display: flex;
@@ -71,10 +71,38 @@ main{
 }
 
 .selected{
-  border: #ffdd20 solid 1px;
+  border: #ffdd20 solid 2px;
 
   .select-overlay{
     display: none;
   }
 
+}
+
+.section-position{
+  display: flex;
+  padding: 0 20px;
+  .button{
+    flex: 1;
+    padding: 5px 10px;
+    margin: auto;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+    font-size: 12px;
+
+    &:hover{
+      background-color: #ffdd20;
+      color: white;
+    }
+  }
+
+  h3{
+    font-size: 18px;
+    color: #ffdd20;
+    margin: 10px 15px 10px 0;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    flex: 3;
+  }
 }

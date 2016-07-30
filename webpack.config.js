@@ -33,7 +33,7 @@ var config = {
             },
             // bundle LESS and CSS into a single CSS file, auto-generating -vendor-prefixes
             {
-                test: /\.(less|css)$/,
+                test: /\.less?/,
                 include: LESS_DIR,
                 loader: ExtractTextPlugin.extract("style?sourceMap", "css?sourceMap!autoprefixer?browsers=last 2 version!less")
             }
@@ -42,7 +42,8 @@ var config = {
     plugins: [
         // extract inline css into separate 'styles.css'
         new ExtractTextPlugin( '../css/styles.css', { allChunks: true }),
-        new webpack.optimize.DedupePlugin()
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurenceOrderPlugin()
     ],
     devtool: 'source-map'
 
