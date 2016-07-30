@@ -34,7 +34,12 @@ var Grid = React.createClass({
         if(this.props.sectionsObject.sections) {
             return (
                 <main>
-                    <Editor selectedObjectKey={this.state.selectedObjectKey} onEditorPositionClick={this.handleEditorPositionClick} sectionsObject={this.state.sectionsObject.sections} onEdit={this.handleEdit}/>
+                    <Editor selectedObjectKey={this.state.selectedObjectKey}
+                            onEditorPositionClick={this.handleEditorPositionClick}
+                            sectionsObject={this.state.sectionsObject.sections}
+                            onEdit={this.handleEdit}
+                            onEditorAddClick={this.handleEditorAddClick}
+                    />
                     <div className="home-multisection-widget row">
                         {this.renderSections()}
                     </div>
@@ -120,6 +125,11 @@ var Grid = React.createClass({
             this.state.selectedObjectKey = newIndex;
             this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: this.state.selectedObjectKey})
         }
+    },
+
+    handleEditorAddClick(){
+        this.props.sectionsObject.add();
+        this.setState({sectionsObject: this.state.sectionsObject});
     }
 
 });

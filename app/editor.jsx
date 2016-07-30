@@ -12,7 +12,8 @@ var Editor = React.createClass({
         selectedObjectKey: React.PropTypes.number,
         sectionsObject: React.PropTypes.array,
         onEdit: React.PropTypes.func,
-        onEditorPositionClick: React.PropTypes.func
+        onEditorPositionClick: React.PropTypes.func,
+        onEditorAddClick: React.PropTypes.func
     },
 
     render(){
@@ -22,10 +23,14 @@ var Editor = React.createClass({
                 <div className="section-settings">
                     {this.renderOptions()}
                 </div>
-                <div className="section-position">
+                <div className="editor-section">
                     <h3>Shift Position</h3>
                     <div className="button left" onClick={this.handlePositionClick}>Left</div>
                     <div className="button right"onClick={this.handlePositionClick.bind(this, true)}>Right</div>
+                </div>
+                <div className="editor-section">
+                    <h3>Add New</h3>
+                    <div className="button left" onClick={this.handleAddClick}>Add</div>
                 </div>
 
             </div>
@@ -70,6 +75,10 @@ var Editor = React.createClass({
             this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey-1);
         }
 
+    },
+
+    handleAddClick(){
+        this.props.onEditorAddClick();
     }
 
 

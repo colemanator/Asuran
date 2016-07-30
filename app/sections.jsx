@@ -66,6 +66,22 @@ var AgencyDetailsSection = React.createClass({
 });
 
 
+var Empty = React.createClass({
+    
+    propTypes:{
+        sectionObject: React.PropTypes.object,
+        index: React.PropTypes.number,
+        onSectionClick: React.PropTypes.func,
+        selectedObjectKey: React.PropTypes.number
+    },
+
+    render(){
+        return;
+    }
+    
+});
+
+
 
 
 
