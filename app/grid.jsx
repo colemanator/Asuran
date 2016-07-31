@@ -30,6 +30,8 @@ var Grid = React.createClass({
 
     render(){
 
+        //:todo refactor out the menu/editor section into it's own component and create top level component called App
+
         if(this.props.sectionsObject.sections) {
             return (
                 <main>

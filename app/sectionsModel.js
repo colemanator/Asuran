@@ -24,23 +24,25 @@ var Sections = {
 
     },
 
-    add(){
-        //todo: Change to add empty Section
-        this.sections.push(
-            {
-                id: 'agency-details',
-                size: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3',
-                colour: ' brand-bg brand-style-fg'
-            }
-        );
+    add(id){
+        switch(id){
+            case undefined:
+                this.sections.push(
+                    {
+                        id: 'empty'
+                    }
+                );
+                return (this.sections.length - 1);
+        }
     },
 
-    delete(){
 
+    delete(index){
+        this.sections.splice(index, 1);
     },
 
-    change(){
-
+    set(index, id){
+        
     },
 
     move(oldIndex, newIndex){
@@ -50,7 +52,15 @@ var Sections = {
         } else {
             return false;
         }
+    },
+
+    /**
+     * Array of sections with their defaults values :todo populate
+     */
+    defaults:{
+        
     }
+    
 };
 
 export {Sections};
