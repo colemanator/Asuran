@@ -6,68 +6,37 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {AgencyDetailsSection, Empty} from '../app/sections.jsx';
-import  {Editor} from '../app/Editor.jsx'
 
 /**
- * This grid will contain all sections, it is responsible for creating, editing and deleting child sections
- * IT WILL ALSO HOLD ALL STATE for sections below. It can be initialised with an object containing the information to
- * create specific sections or it can start from scratch.
+ * Grid component responsible for generating the sections based on the sections Object provided
  * @type {*|Function}
  */
 var Grid = React.createClass({
     
     propTypes:{
         sectionsObject: React.PropTypes.object,
-        sectionsObjectKey: React.PropTypes.number
+        selectedObjectKey: React.PropTypes.number,
+        onSectionClick: React.PropTypes.func
     },
-
-    getInitialState(){
-        return {
-            sectionsObject: this.props.sectionsObject,
-            selectedObjectKey: this.props.selectedObjectKey
-        }
-    },
+    
 
     render(){
-
-        //:todo refactor out the menu/editor section into it's own component and create top level component called App
-
-        if(this.props.sectionsObject.sections) {
-            return (
-                <main>
-                    <Editor selectedObjectKey={this.state.selectedObjectKey}
-                            onEditorPositionClick={this.handleEditorPositionClick}
-                            sectionsObject={this.state.sectionsObject.sections}
-                            onEdit={this.handleEdit}
-                            onEditorAddClick={this.handleEditorAddClick}
-                    />
-                    <div className="home-multisection-widget row">
-                        {this.renderSections()}
-                    </div>
-                </main>
-            );
-        } else {
-            return (
-                <main>
-                    <div className="menu-wrapper">
-                        /*<menu selectedObject={this.props.selectedObject}/>*/
-                    </div>
-                    <div className="home-multisection-widget row">
-                        /*<emptySection/>*/
-                    </div>
-                </main>
-            );
-        }
+        return (
+         
+                <div className="home-multisection-widget row">
+                    {this.renderSections()}
+                </div>
+        );
     },
 
     renderSections(){
 
         var sectionsArray = [];
 
-        for(let i = 0; i < this.state.sectionsObject.sections.length; i++ ){
-            switch(this.state.sectionsObject.sections[i].id) {
+        for(let i = 0; i < this.props.sectionsObject.sections.length; i++ ){
+            switch(this.props.sectionsObject.sections[i].id) {
                 case 'agency-details':
-                    sectionsArray.push(<AgencyDetailsSection key={i} index={i} selectedObjectKey={this.state.selectedObjectKey} onSectionClick={this.handleSectionClick} sectionObject={this.state.sectionsObject.sections[i]}/>);
+                    sectionsArray.push(<AgencyDetailsSection key={i} index={i} selectedObjectKey={this.props.selectedObjectKey} onSectionClick={this.props.onSectionClick} sectionObject={this.props.sectionsObject.sections[i]}/>);
                     break;
                 case 'agency-map':
                     sectionsArray.push(<agencyMapSection/>);
@@ -103,36 +72,13 @@ var Grid = React.createClass({
                     sectionsArray.push(<videoLinkSection/>);
                     break;
                 case 'empty':
-                    sectionsArray.push(<Empty key={i} index={i} selectedObjectKey={this.state.selectedObjectKey} onSectionClick={this.handleSectionClick}/>);
+                    sectionsArray.push(<Empty key={i} index={i} selectedObjectKey={this.props.selectedObjectKey} onSectionClick={this.props.onSectionClick}/>);
                     break;
             }
 
         }
 
         return sectionsArray;
-    },
-
-    handleEdit(key, event){
-        this.state.sectionsObject.sections[key][event.target.name] = event.target.value;
-        this.setState({sectionsObject:  this.state.sectionsObject});
-    },
-
-    handleSectionClick(index){
-        this.state.selectedObjectKey = index;
-        this.setState({selectedObjectKey: this.state.selectedObjectKey})
-    },
-    
-    handleEditorPositionClick(currentIndex, newIndex){
-        var sucsess = this.state.sectionsObject.move(currentIndex, newIndex);
-        if(sucsess) {
-            this.state.selectedObjectKey = newIndex;
-            this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: this.state.selectedObjectKey})
-        }
-    },
-
-    handleEditorAddClick(){
-        this.props.sectionsObject.add();
-        this.setState({sectionsObject: this.state.sectionsObject});
     }
 
 });

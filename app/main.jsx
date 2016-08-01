@@ -4,11 +4,10 @@
 'use strict';
 
 require('/Users/Peter/PhpstormProjects/Asuran/client/less/main.less');
-//require('/Users/Peter/PhpstormProjects/Asuran/client/less/main.less');
 
 import React from 'react';
 import {render} from 'react-dom';
-import {Grid} from '../app/Grid.jsx'
+import {App} from '../app/App.jsx'
 import {Sections} from '../app/sectionsModel';
 
 var testObject = Object.create(Sections);
@@ -25,4 +24,4 @@ var testObject = Object.create(Sections);
 
     ];
 
-render(React.createElement(Grid,{sectionsObject: testObject, selectedObjectKey: 0}),document.getElementById('app'));
+render(React.createElement(App,{sectionsObject: testObject, selectedObjectKey: 0}),document.getElementById('app'));
