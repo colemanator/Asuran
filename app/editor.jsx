@@ -110,12 +110,10 @@ var SectionSelect = React.createClass({
 
     render(){
 
-        console.log(this.props.sectionsObject[this.props.selectedObjectKey].id);
-
         return (
             <div className="editor-section">
                 <h3>Change Section Type</h3>
-                <select onChange={this.handleSelectChange} defaultValue={this.props.sectionsObject[this.props.selectedObjectKey].id}>
+                <select onChange={this.handleSelectChange} value={this.props.sectionsObject[this.props.selectedObjectKey].id}>
                     <option value="agency-details">Agency Details</option>
                     <option value="empty">Empty</option>
                 </select>
