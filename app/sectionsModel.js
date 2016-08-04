@@ -6,7 +6,7 @@
 'use strict';
 
 var Sections = {
-    create(){
+    init(){
         if(!this.hasOwnProperty('sections')){
             this.sections = [
                 {
@@ -41,10 +41,6 @@ var Sections = {
         this.sections.splice(index, 1);
     },
 
-    set(index, id){
-        
-    },
-
     move(oldIndex, newIndex){
         if (oldIndex >= 0 && oldIndex < this.sections.length && newIndex >= 0 && newIndex < this.sections.length) {
             this.sections.splice(newIndex, 0, this.sections.splice(oldIndex, 1)[0]);
@@ -54,11 +50,26 @@ var Sections = {
         }
     },
 
-    /**
-     * Array of sections with their defaults values :todo populate
-     */
-    defaults:{
-        
+    set(index, id){
+        //this will be verbose but easier to understand and quicker than copying values from a default object
+        switch(id){
+            case 'agency-details':
+                this.sections[index] = {
+                        id: 'agency-details',
+                        size: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3',
+                        colour: ' brand-bg brand-style-fg'
+                    };
+                break;
+            case 'empty':
+                this.sections[index] = {
+                        id: 'empty'
+                    };
+                break;
+            default:
+                return false;
+        }
+        //return true on success
+        return true;
     }
     
 };

@@ -12,16 +12,6 @@ import {Sections} from '../app/sectionsModel';
 
 var testObject = Object.create(Sections);
 
-    testObject.sections = [
-        {
-            id: 'agency-details',
-            size: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3',
-            colour: ' brand-bg brand-style-fg'
-        },
-        {
-            id: 'empty'
-        }
-
-    ];
+testObject.init();
 
 render(React.createElement(App,{sectionsObject: testObject, selectedObjectKey: 0}),document.getElementById('app'));

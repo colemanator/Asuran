@@ -36,6 +36,8 @@ var App = React.createClass({
                             sectionsObject={this.state.sectionsObject.sections}
                             onEdit={this.handleEdit}
                             onEditorAddClick={this.handleEditorAddClick}
+                            onEditorSelectChange={this.handleEditorSelectChange}
+                            onEditorDeleteClick={this.handleEditorDeleteClick}
                     />
                     <Grid sectionsObject={this.state.sectionsObject}
                           selectedObjectKey={this.state.selectedObjectKey}
@@ -51,6 +53,8 @@ var App = React.createClass({
                             sectionsObject={this.state.sectionsObject.sections}
                             onEdit={this.handleEdit}
                             onEditorAddClick={this.handleEditorAddClick}
+                            onEditorSelectChange={this.handleEditorSelectChange}
+                            onEditorDeleteClick={this.handleEditorDeleteClick}
                     />
                     <Grid sectionsObject={this.state.sectionsObject}
                           selectedObjectKey={this.state.selectedObjectKey}
@@ -72,16 +76,34 @@ var App = React.createClass({
     },
 
     handleEditorPositionClick(currentIndex, newIndex){
-        var sucsess = this.state.sectionsObject.move(currentIndex, newIndex);
-        if(sucsess) {
+        var success = this.state.sectionsObject.move(currentIndex, newIndex);
+        if(success) {
             this.state.selectedObjectKey = newIndex;
             this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: this.state.selectedObjectKey})
         }
     },
 
     handleEditorAddClick(){
-        this.props.sectionsObject.add();
+        this.state.sectionsObject.add();
         this.setState({sectionsObject: this.state.sectionsObject});
+    },
+
+    handleEditorSelectChange(event){
+        var success = this.state.sectionsObject.set(this.state.selectedObjectKey ,event.target.value);
+        if(success) {
+            this.setState({sectionsObject: this.state.sectionsObject});
+        }
+    },
+
+    handleEditorDeleteClick(index){
+        this.state.sectionsObject.delete(index);
+        if(this.state.sectionsObject.sections.length <= index){
+            this.state.selectedObjectKey -= 1;
+            this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: this.state.selectedObjectKey});
+        } else {
+            this.setState({sectionsObject: this.state.sectionsObject});
+        }
+
     }
 
 });
