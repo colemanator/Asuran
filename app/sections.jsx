@@ -76,7 +76,7 @@ var Empty = React.createClass({
 
     render(){
 
-        var classNames = 'multisection-section section-agency-details col-sm-6 col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3';
+        var classNames = 'multisection-section section-agency-details bg-white col-sm-6 col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3';
 
         if(this.props.index == this.props.selectedObjectKey){
             classNames += ' selected';

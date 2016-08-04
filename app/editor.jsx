@@ -18,15 +18,11 @@ var Editor = React.createClass({
         onEditorDeleteClick: React.PropTypes.func
     },
 
-    //:todo Add a way to change the section id
     render(){
 
         return (
             <div className='menu-wrapper'>
                 <h2 id="editor-title">Editor</h2>
-                <div className="section-settings">
-                    {this.renderOptions()}
-                </div>
                 <div className="editor-section">
                     <h3>Shift Position</h3>
                     <div className="button left" onClick={this.handlePositionClick}>Left</div>
@@ -44,7 +40,9 @@ var Editor = React.createClass({
                                selectedObjectKey={this.props.selectedObjectKey}
                                onEditorSelectChange={this.props.onEditorSelectChange}
                 />
-
+                <div className="section-settings">
+                    {this.renderOptions()}
+                </div>
             </div>
         );
 
@@ -111,9 +109,9 @@ var SectionSelect = React.createClass({
     render(){
 
         return (
-            <div className="editor-section">
+            <div className="editor-section select">
                 <h3>Change Section Type</h3>
-                <select onChange={this.handleSelectChange} value={this.props.sectionsObject[this.props.selectedObjectKey].id}>
+                <select className="section-select" onChange={this.handleSelectChange} value={this.props.sectionsObject[this.props.selectedObjectKey].id}>
                     <option value="agency-details">Agency Details</option>
                     <option value="empty">Empty</option>
                 </select>
@@ -128,7 +126,6 @@ var SectionSelect = React.createClass({
 
 
 });
-
 
 
 export {Editor}
