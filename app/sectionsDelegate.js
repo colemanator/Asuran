@@ -8,6 +8,7 @@
 var Sections = {
     init(){
         if(!this.hasOwnProperty('sections')){
+            this.version = 0.1;
             this.sections = [
                 {
                     id: 'empty'
@@ -16,12 +17,29 @@ var Sections = {
         }
     },
 
-    import(){
+    import(JSONstring){
+        try{
+            this.version = JSON.parse(JSONstring).version;
+            this.sections = JSON.parse(JSONstring).sections;
+            if(Array.isArray(this.sections) && Number.isInteger(this.version)) {
+                if(this.sections.length > 0) {
+                    return true;
+                } else {
+                    this.init();
+                    console.log('JSON was parsed correctly but values provided where not correct for this App');
+                    return false;
+                }
+            }
+        } catch (error){
+            console.error('JSON String provided not valid, please ensure valid JSON string is provided. Using Defaults.', error);
+            this.init();
+            return false;
+        }
 
     },
 
     export(){
-
+        return JSON.stringify(this);
     },
 
     add(id){
