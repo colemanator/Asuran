@@ -113,6 +113,7 @@ var SectionSelect = React.createClass({
                 <h3>Change Section Type</h3>
                 <select className="section-select" onChange={this.handleSelectChange} value={this.props.sectionsObject[this.props.selectedObjectKey].id}>
                     <option value="agency-details">Agency Details</option>
+                    <option value="button-link">Agency Button Link</option>
                     <option value="empty">Empty</option>
                 </select>
             </div>

@@ -5,7 +5,7 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import {AgencyDetailsSection, Empty} from '../app/sections.jsx';
+import {AgencyDetailsSection, Empty, ButtonLinkSection} from '../app/sections.jsx';
 
 /**
  * Grid component responsible for generating the sections based on the sections Object provided
@@ -42,7 +42,7 @@ var Grid = React.createClass({
                     sectionsArray.push(<agencyMapSection/>);
                     break;
                 case 'button-link':
-                    sectionsArray.push(<buttonLinkSection/>);
+                    sectionsArray.push(<ButtonLinkSection key={i}/>);
                     break;
                 case 'image':
                     sectionsArray.push(<imageSection/>);

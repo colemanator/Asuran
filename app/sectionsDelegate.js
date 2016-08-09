@@ -42,7 +42,7 @@ var Sections = {
                     return true;
                 } else {
                     this.init();
-                    console.log('JSON was parsed correctly but values provided where not correct for this App');
+                    console.error('JSON was parsed correctly but values provided where not correct for this App');
                     return false;
                 }
             }
@@ -116,6 +116,16 @@ var Sections = {
                 this.sections[index] = {
                         id: 'empty'
                     };
+                break;
+            case 'button-link':
+                this.sections[index] = {
+                    id: "button-link",
+                    size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
+                    bgImageUrl: "/wp-content/uploads/2015/01/8009906473_81da7b8652_o-e1420495660219.jpg",
+                    caption: "Looking For a Property To Rent",
+                    href: "/listings/",
+                    buttonText: "Recent listings"
+                };
                 break;
             default:
                 return false;

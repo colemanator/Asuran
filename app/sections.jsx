@@ -29,9 +29,13 @@ var AgencyDetailsSection = React.createClass({
         }
     },
 
+    handleClick(){
+        this.props.onSectionClick(this.props.index);
+    },
+
     render(){
 
-        var classNames = "multisection-section section-agency-details col-sm-6 ";
+        var classNames = 'multisection-section section-agency-details col-sm-6 ';
         classNames += this.props.sectionObject.size + this.props.sectionObject.colour;
 
         if(this.props.index == this.props.selectedObjectKey){
@@ -58,10 +62,6 @@ var AgencyDetailsSection = React.createClass({
                 </div>
             </section>
         );
-    },
-    
-    handleClick(){
-        this.props.onSectionClick(this.props.index);
     }
 });
 
@@ -72,6 +72,10 @@ var Empty = React.createClass({
         index: React.PropTypes.number,
         onSectionClick: React.PropTypes.func,
         selectedObjectKey: React.PropTypes.number
+    },
+
+    handleClick(){
+        this.props.onSectionClick(this.props.index);
     },
 
     render(){
@@ -89,12 +93,69 @@ var Empty = React.createClass({
                 </div>
             </section>
         );
+    }
+});
+
+var ButtonLinkSection = React.createClass({
+
+    propTypes: {
+        sectionObject: React.PropTypes.object,
+        index: React.PropTypes.number,
+        onSectionClick: React.PropTypes.func,
+        selectedObjectKey: React.PropTypes.number
+    },
+
+    getDefaultProps(){
+        return {
+            sectionObject: {
+                id: "button-link",
+                size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
+                bgImageUrl: "/wp-content/uploads/2015/01/8009906473_81da7b8652_o-e1420495660219.jpg",
+                caption: "Looking For a Property To Rent",
+                href: "/listings/",
+                buttonText: "Recent listings"
+            }
+        };
     },
 
     handleClick(){
         this.props.onSectionClick(this.props.index);
+    },
+
+    render(){
+
+        var sectionClassName = 'multisection-section section-button-link col-sm-6 ' + this.props.size;
+        var sectionStyles = {
+            backgroundImage: 'url(\'' + this.props.bgImageUrl + '\');'
+        };
+
+        if(this.props.index == this.props.selectedObjectKey){
+            sectionClassName += ' selected';
+        }
+
+        var divStyle = {
+            backgroundColor: 'rgba(0,0,0,' + this.props.transparency + ') !important'
+        };
+
+        //:todo update props with ? : '' to check for empty prop or find a better way
+
+        return (
+            <section className={sectionClassName} style={sectionStyles}>
+                <div className="multisection-section-overlay" style={divStyle}>
+                    <div className="l-table">
+                        <div className="l-table-row">
+                            <div className="l-table-cell">
+                                <div className="section-button-link-container">
+                                    <p className="section-button-link-caption">{this.props.caption}</p>
+                                    <a href={this.props.href ? this.props.href: ''} target={this.props.target} className="btn brand-colors brand-colors-hover">{ this.props.buttonText }</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
     }
-    
 });
 
 
@@ -102,4 +163,4 @@ var Empty = React.createClass({
 
 
 
-export {AgencyDetailsSection, Empty};
+export {AgencyDetailsSection, Empty, ButtonLinkSection};
