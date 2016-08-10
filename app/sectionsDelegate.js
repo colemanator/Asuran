@@ -124,7 +124,8 @@ var Sections = {
                     bgImageUrl: "/wp-content/uploads/2015/01/8009906473_81da7b8652_o-e1420495660219.jpg",
                     caption: "Looking For a Property To Rent",
                     href: "/listings/",
-                    buttonText: "Recent listings"
+                    buttonText: "Recent listings",
+                    transparency: '0.5'
                 };
                 break;
             default:

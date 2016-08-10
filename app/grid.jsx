@@ -42,7 +42,7 @@ var Grid = React.createClass({
                     sectionsArray.push(<agencyMapSection/>);
                     break;
                 case 'button-link':
-                    sectionsArray.push(<ButtonLinkSection key={i}/>);
+                    sectionsArray.push(<ButtonLinkSection key={i} index={i} selectedObjectKey={this.props.selectedObjectKey} onSectionClick={this.props.onSectionClick} sectionObject={this.props.sectionsObject.sections[i]}/>);
                     break;
                 case 'image':
                     sectionsArray.push(<imageSection/>);

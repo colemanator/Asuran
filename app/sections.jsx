@@ -113,7 +113,8 @@ var ButtonLinkSection = React.createClass({
                 bgImageUrl: "/wp-content/uploads/2015/01/8009906473_81da7b8652_o-e1420495660219.jpg",
                 caption: "Looking For a Property To Rent",
                 href: "/listings/",
-                buttonText: "Recent listings"
+                buttonText: "Recent listings",
+                transparency: '0.5'
             }
         };
     },
@@ -124,9 +125,9 @@ var ButtonLinkSection = React.createClass({
 
     render(){
 
-        var sectionClassName = 'multisection-section section-button-link col-sm-6 ' + this.props.size;
+        var sectionClassName = 'multisection-section section-button-link col-sm-6 ' + this.props.sectionObject.size;
         var sectionStyles = {
-            backgroundImage: 'url(\'' + this.props.bgImageUrl + '\');'
+            backgroundImage: 'url(\'' + this.props.sectionObject.bgImageUrl + '\')'
         };
 
         if(this.props.index == this.props.selectedObjectKey){
@@ -134,20 +135,26 @@ var ButtonLinkSection = React.createClass({
         }
 
         var divStyle = {
-            backgroundColor: 'rgba(0,0,0,' + this.props.transparency + ') !important'
+            backgroundColor: 'rgba(0,0,0,' + this.props.sectionObject.transparency + ') !important'
         };
 
         //:todo update props with ? : '' to check for empty prop or find a better way
 
         return (
             <section className={sectionClassName} style={sectionStyles}>
+                <div className="select-overlay" onClick={this.handleClick}>
+                    <div className="center-flex-item"> Click to Edit </div>
+                </div>
                 <div className="multisection-section-overlay" style={divStyle}>
                     <div className="l-table">
                         <div className="l-table-row">
                             <div className="l-table-cell">
                                 <div className="section-button-link-container">
-                                    <p className="section-button-link-caption">{this.props.caption}</p>
-                                    <a href={this.props.href ? this.props.href: ''} target={this.props.target} className="btn brand-colors brand-colors-hover">{ this.props.buttonText }</a>
+                                    <p className="section-button-link-caption">{this.props.sectionObject.caption}</p>
+                                    <a href={this.props.sectionObject.href ? this.props.sectionObject.href: ''}
+                                       target={this.props.sectionObject.target}
+                                       className="btn brand-colors brand-colors-hover">{ this.props.sectionObject.buttonText }
+                                       </a>
                                 </div>
                             </div>
                         </div>
