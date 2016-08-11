@@ -7,6 +7,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import  {Editor} from '../app/Editor.jsx'
 import {Grid} from '../app/Grid.jsx';
+import {HeaderContainer} from '../app/HeaderContainer.jsx'
 
 /**
  * App is the entry point react component and the state holder for the application, it handles all changes by calling
@@ -27,42 +28,25 @@ var App = React.createClass({
     },
 
     render(){
-
-        if(this.props.sectionsObject.sections) {
             return (
-                <main>
-                    <Editor selectedObjectKey={this.state.selectedObjectKey}
-                            onEditorPositionClick={this.handleEditorPositionClick}
-                            sectionsObject={this.state.sectionsObject.sections}
-                            onEdit={this.handleEdit}
-                            onEditorAddClick={this.handleEditorAddClick}
-                            onEditorSelectChange={this.handleEditorSelectChange}
-                            onEditorDeleteClick={this.handleEditorDeleteClick}
-                    />
-                    <Grid sectionsObject={this.state.sectionsObject}
-                          selectedObjectKey={this.state.selectedObjectKey}
-                          onSectionClick={this.handleSectionClick}
-                    />
-                </main>
+                <div>
+                    <HeaderContainer/>
+                    <main>
+                        <Editor selectedObjectKey={this.state.selectedObjectKey}
+                                onEditorPositionClick={this.handleEditorPositionClick}
+                                sectionsObject={this.state.sectionsObject.sections}
+                                onEdit={this.handleEdit}
+                                onEditorAddClick={this.handleEditorAddClick}
+                                onEditorSelectChange={this.handleEditorSelectChange}
+                                onEditorDeleteClick={this.handleEditorDeleteClick}
+                        />
+                        <Grid sectionsObject={this.state.sectionsObject}
+                              selectedObjectKey={this.state.selectedObjectKey}
+                              onSectionClick={this.handleSectionClick}
+                        />
+                    </main>
+                </div>
             );
-        } else {
-            return (
-                <main>
-                    <Editor selectedObjectKey={this.state.selectedObjectKey}
-                            onEditorPositionClick={this.handleEditorPositionClick}
-                            sectionsObject={this.state.sectionsObject.sections}
-                            onEdit={this.handleEdit}
-                            onEditorAddClick={this.handleEditorAddClick}
-                            onEditorSelectChange={this.handleEditorSelectChange}
-                            onEditorDeleteClick={this.handleEditorDeleteClick}
-                    />
-                    <Grid sectionsObject={this.state.sectionsObject}
-                          selectedObjectKey={this.state.selectedObjectKey}
-                          onSectionClick={this.handleSectionClick}
-                    />
-                </main>
-            );
-        }
     },
 
     handleEdit(key, event){
