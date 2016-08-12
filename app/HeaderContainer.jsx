@@ -17,8 +17,8 @@ var HeaderContainer = React.createClass({
           <header>
               <img src="/images/svg/sl-logo-large.svg"/>
               <div className="app-control-wrapper">
-                  <button>Import</button>
-                  <button>Export</button>
+                  <div className="button">Import</div>
+                  <div className="button">Export</div>
               </div>
               <div className="site-url-input-wrapper">
                   <label>Site URL</label>
