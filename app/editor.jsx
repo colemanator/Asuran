@@ -65,7 +65,7 @@ var Editor = React.createClass({
 
                 editorContentArray.push(
                     <div key={key}>
-                        <h4>{propertyName}</h4>,
+                        <h4>{propertyName}</h4>
                         <input type="text" defaultValue={selectedObject[propertyName]} name={propertyName} onChange={this.handleChange}/>
                     </div>
                 );

@@ -31,7 +31,7 @@ var App = React.createClass({
 
     render(){
             return (
-                <div>
+                <div className="app">
                     <HeaderContainer
                         siteURL={this.state.siteURL}
                         onSiteURLChange={this.handleHeaderSiteURLChange}
