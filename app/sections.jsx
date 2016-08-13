@@ -102,7 +102,8 @@ var ButtonLinkSection = React.createClass({
         sectionObject: React.PropTypes.object,
         index: React.PropTypes.number,
         onSectionClick: React.PropTypes.func,
-        selectedObjectKey: React.PropTypes.number
+        selectedObjectKey: React.PropTypes.number,
+        siteURL: React.PropTypes.string
     },
 
     getDefaultProps(){
@@ -114,7 +115,8 @@ var ButtonLinkSection = React.createClass({
                 caption: "Looking For a Property To Rent",
                 href: "/listings/",
                 buttonText: "Recent listings",
-                transparency: '0.5'
+                transparency: '0.5',
+                siteURL: 'http://felix.e1.siteloft.com'
             }
         };
     },
@@ -126,8 +128,10 @@ var ButtonLinkSection = React.createClass({
     render(){
 
         var sectionClassName = 'multisection-section section-button-link col-sm-6 ' + this.props.sectionObject.size;
+        var href = this.props.sectionObject.href ? this.props.sectionObject.href: '';
+        var siteURL = this.props.siteURL ? this.props.siteURL : '';
         var sectionStyles = {
-            backgroundImage: 'url(\'' + this.props.sectionObject.bgImageUrl + '\')'
+            backgroundImage: 'url(\'' + siteURL + this.props.sectionObject.bgImageUrl + '\')'
         };
 
         if(this.props.index == this.props.selectedObjectKey){
@@ -151,7 +155,7 @@ var ButtonLinkSection = React.createClass({
                             <div className="l-table-cell">
                                 <div className="section-button-link-container">
                                     <p className="section-button-link-caption">{this.props.sectionObject.caption}</p>
-                                    <a href={this.props.sectionObject.href ? this.props.sectionObject.href: ''}
+                                    <a href={href}
                                        target={this.props.sectionObject.target}
                                        className="btn brand-colors brand-colors-hover">{ this.props.sectionObject.buttonText }
                                        </a>

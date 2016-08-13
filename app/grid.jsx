@@ -16,7 +16,8 @@ var Grid = React.createClass({
     propTypes:{
         sectionsObject: React.PropTypes.object,
         selectedObjectKey: React.PropTypes.number,
-        onSectionClick: React.PropTypes.func
+        onSectionClick: React.PropTypes.func,
+        siteURL: React.PropTypes.string
     },
     
 
@@ -42,7 +43,7 @@ var Grid = React.createClass({
                     sectionsArray.push(<agencyMapSection/>);
                     break;
                 case 'button-link':
-                    sectionsArray.push(<ButtonLinkSection key={i} index={i} selectedObjectKey={this.props.selectedObjectKey} onSectionClick={this.props.onSectionClick} sectionObject={this.props.sectionsObject.sections[i]}/>);
+                    sectionsArray.push(<ButtonLinkSection key={i} index={i} selectedObjectKey={this.props.selectedObjectKey} onSectionClick={this.props.onSectionClick} sectionObject={this.props.sectionsObject.sections[i]} siteURL={this.props.siteURL}/>);
                     break;
                 case 'image':
                     sectionsArray.push(<imageSection/>);

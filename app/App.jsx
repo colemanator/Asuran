@@ -17,20 +17,28 @@ var App = React.createClass({
 
     propTypes:{
         sectionsObject: React.PropTypes.object,
-        selectedObjectKey: React.PropTypes.number
+        selectedObjectKey: React.PropTypes.number,
+        siteURL: React.PropTypes.string
     },
 
     getInitialState(){
         return {
             sectionsObject: this.props.sectionsObject,
-            selectedObjectKey: this.props.selectedObjectKey
+            selectedObjectKey: this.props.selectedObjectKey,
+            siteURL: this.props.siteURL
         }
     },
 
     render(){
             return (
                 <div>
-                    <HeaderContainer/>
+                    <HeaderContainer
+                        siteURL={this.state.siteURL}
+                        onSiteURLChange={this.handleHeaderSiteURLChange}
+                        onExportClick={this.handleExportClick}
+                        onImportClick={this.handleImportClick}
+
+                    />
                     <main>
                         <Editor selectedObjectKey={this.state.selectedObjectKey}
                                 onEditorPositionClick={this.handleEditorPositionClick}
@@ -43,6 +51,7 @@ var App = React.createClass({
                         <Grid sectionsObject={this.state.sectionsObject}
                               selectedObjectKey={this.state.selectedObjectKey}
                               onSectionClick={this.handleSectionClick}
+                              siteURL={this.state.siteURL}
                         />
                     </main>
                 </div>
@@ -55,15 +64,13 @@ var App = React.createClass({
     },
 
     handleSectionClick(index){
-        this.state.selectedObjectKey = index;
-        this.setState({selectedObjectKey: this.state.selectedObjectKey})
+        this.setState({selectedObjectKey: index})
     },
 
     handleEditorPositionClick(currentIndex, newIndex){
         var success = this.state.sectionsObject.move(currentIndex, newIndex);
         if(success) {
-            this.state.selectedObjectKey = newIndex;
-            this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: this.state.selectedObjectKey})
+            this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: newIndex})
         }
     },
 
@@ -88,6 +95,10 @@ var App = React.createClass({
             this.setState({sectionsObject: this.state.sectionsObject});
         }
 
+    },
+
+    handleHeaderSiteURLChange(value){
+        this.setState({siteURL: value});
     }
 
 });

@@ -14,4 +14,4 @@ var testObject = Object.create(Sections);
 
 testObject.init();
 
-render(React.createElement(App,{sectionsObject: testObject, selectedObjectKey: 0}),document.getElementById('app'));
+render(React.createElement(App,{sectionsObject: testObject, selectedObjectKey: 0, siteURL: 'http://felix.e1.siteloft.com'}),document.getElementById('app'));

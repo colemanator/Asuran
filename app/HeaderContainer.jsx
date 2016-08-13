@@ -10,6 +10,9 @@ var HeaderContainer = React.createClass({
 
     propTypes:{
         siteURL: React.PropTypes.string,
+        onSiteURLChange: React.PropTypes.func,
+        onImportClick: React.PropTypes.func,
+        onExportClick: React.PropTypes.func
     },
 
     render(){
@@ -17,17 +20,30 @@ var HeaderContainer = React.createClass({
           <header>
               <img src="/images/svg/sl-logo-large.svg"/>
               <div className="app-control-wrapper">
-                  <div className="button">Import</div>
-                  <div className="button">Export</div>
+                  <div className="button" onChange={this.handleImportClick}>Import</div>
+                  <div className="button" onChange={this.handleExportClick}>Export</div>
               </div>
               <div className="site-url-input-wrapper">
                   <label>Site URL</label>
-                <input type="text" />
+                <input type="text" defaultValue={this.props.siteURL} onChange={this.handleSiteURLChange}/>
               </div>
           </header>
         );
 
+    },
+
+    handleSiteURLChange(event){
+        this.props.onSiteURLChange(event.target.value);
+    },
+
+    handleImportClick(){
+        this.props.onImportClick();
+    },
+
+    handleExportClick(){
+        this.props.onExportClick();
     }
+
 
 });
 
