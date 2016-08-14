@@ -8,6 +8,7 @@ import {render} from 'react-dom';
 import  {Editor} from '../app/Editor.jsx'
 import {Grid} from '../app/Grid.jsx';
 import {HeaderContainer} from '../app/HeaderContainer.jsx'
+import {Window} from '../app/Window.jsx';
 
 /**
  * App is the entry point react component and the state holder for the application, it handles all changes by calling
@@ -54,6 +55,11 @@ var App = React.createClass({
                               siteURL={this.state.siteURL}
                         />
                     </main>
+                    <Window
+                        display="active"
+                        contentType="message"
+                        content="hello world"
+                    />
                 </div>
             );
     },
