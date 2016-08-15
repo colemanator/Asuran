@@ -59,6 +59,7 @@ var App = React.createClass({
                         display="active"
                         contentType="message"
                         content="hello world"
+                        title="Error"
                     />
                 </div>
             );

@@ -9,7 +9,8 @@ var Window = React.createClass({
     propTypes:{
         display: React.PropTypes.string,
         contentType: React.PropTypes.string,
-        content: React.PropTypes.string
+        content: React.PropTypes.string,
+        title: React.PropTypes.string
     },
 
 
@@ -17,21 +18,13 @@ var Window = React.createClass({
 
         var overlayClassName = 'overlay ' + this.props.display;
         var containerClassName = "content-container " + this.props.display;
-        var contentClassName = 'content ' + this.props.contentType;
+
 
         return (
             <div className="window">
                 <div className={overlayClassName}></div>
                 <div className={containerClassName}>
-                    <div className={contentClassName}>
-                        <h2>Error</h2>
-                        <div className="message">
-                            {this.props.content}
-                        </div>
-                        <div className="controls">
-                            <div className="button close">Close</div>
-                        </div>
-                    </div>
+                    {this.displayContent()}
                 </div>
             </div>
         );
@@ -39,32 +32,52 @@ var Window = React.createClass({
 
     displayContent(){
 
+        var contentClassName = 'content ' + this.props.contentType;
+
         if(this.props.contentType == 'message'){
             return (
-              <div className="message">
-                  {this.props.content}
-                  <div className="button close">Close</div>
-              </div>
+                <div className={contentClassName}>
+                    <h2>{this.props.title}</h2>
+                    <div className="message">
+                        {this.props.content}
+                    </div>
+                    <div className="controls">
+                        <div className="button close">Close</div>
+                    </div>
+                </div>
             );
         } else if(this.props.contentType == 'export'){
             return (
-                <div className="export">
-                    <textarea value={this.props.content}></textarea>
-                    <div className="button copy">Copy</div>
-                    <div className="button cancel">Cancel</div>
+                <div className={contentClassName}>
+                    <h2>{this.props.title}</h2>
+                    <div className="export">
+                        <textarea value={this.props.content}>
+                            {this.props.content}
+                        </textarea>
+                    </div>
+                    <div className="controls">
+                        <div className="button copy">Copy</div>
+                        <div className="button close">Close</div>
+                    </div>
                 </div>
             );
         } else if(this.props.contentType == 'import'){
             return (
-                <div className="import">
-                    <textarea></textarea>
-                    <div className="button import">Import</div>
-                    <div className="button cancel">Cancel</div>
+                <div className={contentClassName}>
+                    <h2>{this.props.title}</h2>
+                    <div className="import">
+                        <textarea>
+                            'Enter JSON string here'
+                        </textarea>
+                    </div>
+                    <div className="controls">
+                        <div className="button import">Import</div>
+                        <div className="button close">Close</div>
+                    </div>
                 </div>
             );
         }
-
-    }
+    },
 });
 
 export {Window};
