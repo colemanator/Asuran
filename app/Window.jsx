@@ -17,13 +17,20 @@ var Window = React.createClass({
 
         var overlayClassName = 'overlay ' + this.props.display;
         var containerClassName = "content-container " + this.props.display;
+        var contentClassName = 'content ' + this.props.contentType;
 
         return (
             <div className="window">
                 <div className={overlayClassName}></div>
                 <div className={containerClassName}>
-                    <div className="content">
-                        {this.displayContent()}
+                    <div className={contentClassName}>
+                        <h2>Error</h2>
+                        <div className="message">
+                            {this.props.content}
+                        </div>
+                        <div className="controls">
+                            <div className="button close">Close</div>
+                        </div>
                     </div>
                 </div>
             </div>
