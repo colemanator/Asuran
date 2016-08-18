@@ -20,8 +20,8 @@ var HeaderContainer = React.createClass({
           <header>
               <img src="/images/svg/sl-logo-large.svg"/>
               <div className="app-control-wrapper">
-                  <div className="button" onChange={this.handleImportClick}>Import</div>
-                  <div className="button" onChange={this.handleExportClick}>Export</div>
+                  <div className="button" onClick={this.handleImportClick}>Import</div>
+                  <div className="button" onClick={this.handleExportClick}>Export</div>
               </div>
               <div className="site-url-input-wrapper">
                   <label>Site URL</label>

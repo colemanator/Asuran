@@ -10,29 +10,31 @@ var Window = React.createClass({
         display: React.PropTypes.string,
         contentType: React.PropTypes.string,
         content: React.PropTypes.string,
-        title: React.PropTypes.string
+        title: React.PropTypes.string,
+        onCloseClick: React.PropTypes.func,
+        onImportClick: React.PropTypes.func,
+        onImportTextAreaChange: React.PropTypes.func
     },
 
 
     render(){
 
-        var overlayClassName = 'overlay ' + this.props.display;
-        var containerClassName = "content-container " + this.props.display;
-
+        var windowClassName = 'window ' + this.props.display;
 
         return (
-            <div className="window">
-                <div className={overlayClassName}></div>
-                <div className={containerClassName}>
+            <div className={windowClassName}>
+                <div className='overlay'></div>
+                <div className='content-container'>
                     {this.displayContent()}
                 </div>
             </div>
         );
     },
 
+    //not sure if this should be broken into different components
     displayContent(){
 
-        var contentClassName = 'content ' + this.props.contentType;
+        var contentClassName = 'content';
 
         if(this.props.contentType == 'message'){
             return (
@@ -42,7 +44,7 @@ var Window = React.createClass({
                         {this.props.content}
                     </div>
                     <div className="controls">
-                        <div className="button close">Close</div>
+                        <div className="button close" onClick={this.handleCloseClick}>Close</div>
                     </div>
                 </div>
             );
@@ -57,7 +59,7 @@ var Window = React.createClass({
                     </div>
                     <div className="controls">
                         <div className="button copy">Copy</div>
-                        <div className="button close">Close</div>
+                        <div className="button close" onClick={this.handleCloseClick}>Close</div>
                     </div>
                 </div>
             );
@@ -66,18 +68,29 @@ var Window = React.createClass({
                 <div className={contentClassName}>
                     <h2>{this.props.title}</h2>
                     <div className="import">
-                        <textarea>
-                            'Enter JSON string here'
+                        <textarea defaultValue="Enter JSON string here" onChange={this.handleImportTextAreaChange}>
                         </textarea>
                     </div>
                     <div className="controls">
-                        <div className="button import">Import</div>
-                        <div className="button close">Close</div>
+                        <div className="button import" onClick={this.handleImportClick}>Import</div>
+                        <div className="button close" onClick={this.handleCloseClick}>Close</div>
                     </div>
                 </div>
             );
         }
     },
+
+    handleCloseClick(){
+        this.props.onCloseClick()
+    },
+
+    handleImportClick(){
+        this.props.onImportClick();
+    },
+
+    handleImportTextAreaChange(event){
+        this.props.onImportTextAreaChange(event.target.value);
+    }
 });
 
 export {Window};

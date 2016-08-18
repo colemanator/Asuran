@@ -19,14 +19,21 @@ var App = React.createClass({
     propTypes:{
         sectionsObject: React.PropTypes.object,
         selectedObjectKey: React.PropTypes.number,
-        siteURL: React.PropTypes.string
+        siteURL: React.PropTypes.string,
     },
 
     getInitialState(){
         return {
             sectionsObject: this.props.sectionsObject,
             selectedObjectKey: this.props.selectedObjectKey,
-            siteURL: this.props.siteURL
+            siteURL: this.props.siteURL,
+            windowState: {
+                display: "",
+                contentType: "",
+                content: "",
+                title: ""
+            },
+            tempJSONString: ''
         }
     },
 
@@ -37,7 +44,7 @@ var App = React.createClass({
                         siteURL={this.state.siteURL}
                         onSiteURLChange={this.handleHeaderSiteURLChange}
                         onExportClick={this.handleExportClick}
-                        onImportClick={this.handleImportClick}
+                        onImportClick={this.handleHeaderImportClick}
 
                     />
                     <main>
@@ -56,10 +63,13 @@ var App = React.createClass({
                         />
                     </main>
                     <Window
-                        display="active"
-                        contentType="message"
-                        content="hello world"
-                        title="Error"
+                        display={this.state.windowState.display}
+                        contentType={this.state.windowState.contentType}
+                        content={this.state.windowState.content}
+                        title={this.state.windowState.title}
+                        onCloseClick={this.handleWindowCloseClick}
+                        onImportClick={this.handleWindowImportClick}
+                        onImportTextAreaChange={this.handleWindowImportTextAreaChange}
                     />
                 </div>
             );
@@ -106,6 +116,43 @@ var App = React.createClass({
 
     handleHeaderSiteURLChange(value){
         this.setState({siteURL: value});
+    },
+
+    handleHeaderImportClick(){
+        this.setState({windowState: {
+            display: "active",
+            contentType: "import",
+            content: "hello world",
+            title: "Export"
+        }});
+    },
+
+    handleWindowCloseClick(){
+        this.state.windowState.display = '';
+        this.setState({windowState: this.state.windowState});
+    },
+
+    handleWindowImportClick(){
+        if(this.state.tempJSONString != ''){
+            var success = this.state.sectionsObject.import(this.state.tempJSONString);
+            if(success){
+                this.setState({
+                    sectionsObject: this.state.sectionsObject,
+                    windowState: {
+                        display: "",
+                        contentType: "",
+                        content: "",
+                        title: ""
+                    }
+                });
+            } else {
+
+            }
+        }
+    },
+
+    handleWindowImportTextAreaChange(value){
+        this.state.tempJSONString = value;
     }
 
 });

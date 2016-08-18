@@ -10,6 +10,13 @@ import {render} from 'react-dom';
 import {App} from '../app/App.jsx'
 import {Sections} from '../app/sectionsDelegate';
 
+var windowState = {
+    display: "active",
+    contentType: "import",
+    content: "hello world",
+    title: "Export"
+};
+
 var testObject = Object.create(Sections);
 
 testObject.init();

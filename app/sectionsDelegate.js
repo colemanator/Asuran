@@ -37,7 +37,7 @@ var Sections = {
         try{
             this.version = JSON.parse(JSONstring).version;
             this.sections = JSON.parse(JSONstring).sections;
-            if(Array.isArray(this.sections) && Number.isInteger(this.version)) {
+            if(Array.isArray(this.sections) && !isNaN(this.version)) {
                 if(this.sections.length > 0) {
                     return true;
                 } else {
