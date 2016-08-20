@@ -29,28 +29,37 @@ var Sections = {
 
     /**
      * Takes a jsonString and validates it before assigning it to the delegates this objects section and version.
-     * This function will catch syntax errors from parsing JSON String :todo create error message for user
-     * @param JSONstring {string} JSON string to be imported
-     * @returns {boolean} true if successful false if otherwise
+     * This function will catch syntax errors from parsing JSON String
+     * @param JSONString {string} JSON string to be imported
+     * @returns {object} true if successful false if otherwise
      */
-    import(JSONstring){
+    import(JSONString){
         try{
-            this.version = JSON.parse(JSONstring).version;
-            this.sections = JSON.parse(JSONstring).sections;
+            //create backup of current object in case parse fails
+            var backup = this.export();
+
+            //parse
+            this.version = JSON.parse(JSONString).version;
+            this.sections = JSON.parse(JSONString).sections;
+
+            //Check to see if the object contains correct values
             if(Array.isArray(this.sections) && !isNaN(this.version)) {
                 if(this.sections.length > 0) {
                     return true;
                 } else {
-                    this.init();
-                    console.error('JSON was parsed correctly but values provided where not correct for this App');
-                    return false;
+                    this.version = JSON.parse(backup).version;
+                    this.sections = JSON.parse(backup).sections;
+                    return {success: false, error: 'JSON was parsed correctly but values provided where not correct for this App'};
                 }
             }
+        //Catch any syntax errors thrown by JSON.parse
         } catch (error){
-            console.error('JSON String provided not valid, please ensure valid JSON string is provided. Using Defaults.', error);
-            this.init();
-            return false;
+            this.version = JSON.parse(backup).version;
+            this.sections = JSON.parse(backup).sections;
+            return {success: false, error: 'JSON String provided not valid, please ensure valid JSON string is provided'};
         }
+
+        return {success: true};
 
     },
 
@@ -95,6 +104,8 @@ var Sections = {
             return false;
         }
     },
+
+    //:todo eventually it might be worth creating a saving system using localStorage
 
     /**
      * This function will set the section at the index provided with the default values for the section ID provided.

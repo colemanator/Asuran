@@ -25,7 +25,7 @@ app.use(compress({
 }));
 
 //Static public directory
-app.use(serve('./client/public/',{maxage: 6}));
+app.use(serve('./assets/public/',{maxage: 6}));
 
 app.listen(3000);
 

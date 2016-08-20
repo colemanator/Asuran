@@ -18,14 +18,13 @@ var App = React.createClass({
 
     propTypes:{
         sectionsObject: React.PropTypes.object,
-        selectedObjectKey: React.PropTypes.number,
         siteURL: React.PropTypes.string,
     },
 
     getInitialState(){
         return {
             sectionsObject: this.props.sectionsObject,
-            selectedObjectKey: this.props.selectedObjectKey,
+            selectedObjectKey: 0,
             siteURL: this.props.siteURL,
             windowState: {
                 display: "",
@@ -43,7 +42,7 @@ var App = React.createClass({
                     <HeaderContainer
                         siteURL={this.state.siteURL}
                         onSiteURLChange={this.handleHeaderSiteURLChange}
-                        onExportClick={this.handleExportClick}
+                        onExportClick={this.handleHeaderExportClick}
                         onImportClick={this.handleHeaderImportClick}
 
                     />
@@ -122,7 +121,17 @@ var App = React.createClass({
         this.setState({windowState: {
             display: "active",
             contentType: "import",
-            content: "hello world",
+            content: "Enter JSON string here",
+            title: "Import"
+        }});
+    },
+
+    handleHeaderExportClick(){
+        var JSONString = this.state.sectionsObject.export();
+        this.setState({windowState: {
+            display: "active",
+            contentType: "export",
+            content: JSONString,
             title: "Export"
         }});
     },
@@ -134,8 +143,8 @@ var App = React.createClass({
 
     handleWindowImportClick(){
         if(this.state.tempJSONString != ''){
-            var success = this.state.sectionsObject.import(this.state.tempJSONString);
-            if(success){
+            var status = this.state.sectionsObject.import(this.state.tempJSONString);
+            if(status.success){
                 this.setState({
                     sectionsObject: this.state.sectionsObject,
                     windowState: {
@@ -146,7 +155,15 @@ var App = React.createClass({
                     }
                 });
             } else {
-
+                this.setState({
+                    sectionsObject: this.state.sectionsObject,
+                    windowState: {
+                        display: "active",
+                        contentType: status.error,
+                        content: "message",
+                        title: "Error"
+                    }
+                });
             }
         }
     },

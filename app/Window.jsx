@@ -11,24 +11,10 @@ var Window = React.createClass({
         contentType: React.PropTypes.string,
         content: React.PropTypes.string,
         title: React.PropTypes.string,
+
         onCloseClick: React.PropTypes.func,
         onImportClick: React.PropTypes.func,
         onImportTextAreaChange: React.PropTypes.func
-    },
-
-
-    render(){
-
-        var windowClassName = 'window ' + this.props.display;
-
-        return (
-            <div className={windowClassName}>
-                <div className='overlay'></div>
-                <div className='content-container'>
-                    {this.displayContent()}
-                </div>
-            </div>
-        );
     },
 
     //not sure if this should be broken into different components
@@ -53,12 +39,14 @@ var Window = React.createClass({
                 <div className={contentClassName}>
                     <h2>{this.props.title}</h2>
                     <div className="export">
-                        <textarea value={this.props.content}>
+                        <textarea value={this.props.content}
+                                  id="export-text-area"
+                                  readOnly="readOnly">
                             {this.props.content}
                         </textarea>
                     </div>
                     <div className="controls">
-                        <div className="button copy">Copy</div>
+                        <div className="button copy" onClick={this.handleCopyClick}>Copy</div>
                         <div className="button close" onClick={this.handleCloseClick}>Close</div>
                     </div>
                 </div>
@@ -68,7 +56,10 @@ var Window = React.createClass({
                 <div className={contentClassName}>
                     <h2>{this.props.title}</h2>
                     <div className="import">
-                        <textarea defaultValue="Enter JSON string here" onChange={this.handleImportTextAreaChange}>
+                        <textarea value={this.props.content}
+                                  onChange={this.handleImportTextAreaChange}
+                                  onClick={this.handleImportTextAreaClick}
+                        >
                         </textarea>
                     </div>
                     <div className="controls">
@@ -88,9 +79,33 @@ var Window = React.createClass({
         this.props.onImportClick();
     },
 
+    handleCopyClick(){
+        document.getElementById('export-text-area').select();
+        document.execCommand('copy');
+        this.props.onCloseClick();
+    },
+
     handleImportTextAreaChange(event){
         this.props.onImportTextAreaChange(event.target.value);
-    }
+    },
+
+    handleImportTextAreaClick(event){
+        event.target.value = '';
+    },
+
+    render(){
+
+        var windowClassName = 'window ' + this.props.display;
+
+        return (
+            <div className={windowClassName}>
+                <div className='overlay'></div>
+                <div className='content-container'>
+                    {this.displayContent()}
+                </div>
+            </div>
+        );
+    },
 });
 
 export {Window};

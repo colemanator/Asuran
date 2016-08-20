@@ -3,22 +3,18 @@
  */
 'use strict';
 
-require('/Users/Peter/PhpstormProjects/Asuran/client/less/main.less');
+require('../assets/less/main.less');
 
 import React from 'react';
 import {render} from 'react-dom';
 import {App} from '../app/App.jsx'
 import {Sections} from '../app/sectionsDelegate';
 
-var windowState = {
-    display: "active",
-    contentType: "import",
-    content: "hello world",
-    title: "Export"
-};
+//create sectionsObject and link it to it's deligate
+var sectionsObject = Object.create(Sections);
 
-var testObject = Object.create(Sections);
+//initialise with defaults
+sectionsObject.init();
 
-testObject.init();
-
-render(React.createElement(App,{sectionsObject: testObject, selectedObjectKey: 0, siteURL: 'http://felix.e1.siteloft.com'}),document.getElementById('app'));
+//Render out app
+render(React.createElement(App,{sectionsObject, siteURL: 'http://felix.e1.siteloft.com'}),document.getElementById('app'));

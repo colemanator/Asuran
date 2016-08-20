@@ -2,9 +2,9 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, './client/public/dist');
+var BUILD_DIR = path.resolve(__dirname, './assets/public/dist');
 var APP_DIR = path.resolve(__dirname, './app');
-var LESS_DIR = path.resolve(__dirname, './client/less');
+var LESS_DIR = path.resolve(__dirname, './assets/less');
 
 var config = {
     entry: APP_DIR + '/main.jsx',
