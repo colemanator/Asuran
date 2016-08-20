@@ -1,6 +1,8 @@
 /**
  * Created by Peter on 13/08/2016.
  */
+'use strict';
+
 import React from 'react';
 import {render} from 'react-dom';
 

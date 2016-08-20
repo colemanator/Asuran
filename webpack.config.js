@@ -39,12 +39,26 @@ var config = {
             }
         ]
     },
-    plugins: [
+    plugins: ([
         // extract inline css into separate 'styles.css'
         new ExtractTextPlugin( '../css/styles.css', { allChunks: true }),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin()
-    ],
+
+        ].concat(process.env.WEBPACK_ENV==='dev' ? [] : [
+
+            new webpack.optimize.OccurenceOrderPlugin(),
+
+            new webpack.DefinePlugin({
+                "process.env": {
+                    NODE_ENV: JSON.stringify('production')
+                }
+            }),
+
+            new webpack.optimize.UglifyJsPlugin({
+                output: { comments: false },
+            })
+        ])
+    ),
     devtool: 'source-map'
 
 };  

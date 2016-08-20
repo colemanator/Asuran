@@ -12,8 +12,10 @@ var serve = require('koa-static');
 //Create app
 var app = koa();
 
-//Use logger 
-app.use(logger());
+//Use logger if in development mode
+if(process.env.NODE_ENV != 'production') {
+    app.use(logger());
+}
 
 //Compress files before sending
 app.use(compress({
