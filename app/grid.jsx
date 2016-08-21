@@ -9,7 +9,7 @@ import {render} from 'react-dom';
 //sections
 import {AgencyDetailsSection} from '../app/sections/AgencyDetailsSection.jsx';
 import {ButtonLinkSection} from '../app/sections/ButtonLinkSection.jsx';
-import {Empty} from '../app/sections/Empty';
+import {Empty} from '../app/sections/Empty.jsx';
 
 /**
  * Grid component responsible for generating the sections based on the sections Object provided
