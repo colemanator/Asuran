@@ -19,7 +19,36 @@ var Window = React.createClass({
         onImportTextAreaChange: React.PropTypes.func
     },
 
-    //not sure if this should be broken into different components
+    handleCloseClick(){
+        this.props.onCloseClick()
+    },
+
+    handleImportClick(){
+        this.props.onImportClick();
+    },
+
+    /**
+     * copy the current value of the text area to click board
+     */
+    handleCopyClick(){
+        document.getElementById('export-text-area').select();
+        document.execCommand('copy');
+        this.props.onCloseClick();
+    },
+
+    handleImportTextAreaChange(event){
+        this.props.onImportTextAreaChange(event.target.value);
+    },
+
+    handleImportTextAreaClick(event){
+        event.target.value = '';
+    },
+
+    /**
+     * not sure if this should be broken into different components
+     * Create one of the three different types of windows
+     * @returns {XML}
+     */
     displayContent(){
 
         var contentClassName = 'content';
@@ -73,28 +102,10 @@ var Window = React.createClass({
         }
     },
 
-    handleCloseClick(){
-        this.props.onCloseClick()
-    },
-
-    handleImportClick(){
-        this.props.onImportClick();
-    },
-
-    handleCopyClick(){
-        document.getElementById('export-text-area').select();
-        document.execCommand('copy');
-        this.props.onCloseClick();
-    },
-
-    handleImportTextAreaChange(event){
-        this.props.onImportTextAreaChange(event.target.value);
-    },
-
-    handleImportTextAreaClick(event){
-        event.target.value = '';
-    },
-
+    /**
+     * render out the window
+     * @returns {XML}
+     */
     render(){
 
         var windowClassName = 'window ' + this.props.display;

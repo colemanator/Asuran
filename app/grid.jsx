@@ -5,7 +5,11 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import {AgencyDetailsSection, Empty, ButtonLinkSection} from '../app/sections.jsx';
+
+//sections
+import {AgencyDetailsSection} from '../app/sections/AgencyDetailsSection.jsx';
+import {ButtonLinkSection} from '../app/sections/ButtonLinkSection.jsx';
+import {Empty} from '../app/sections/Empty';
 
 /**
  * Grid component responsible for generating the sections based on the sections Object provided
@@ -16,11 +20,18 @@ var Grid = React.createClass({
     propTypes:{
         sectionsObject: React.PropTypes.object,
         selectedObjectKey: React.PropTypes.number,
-        onSectionClick: React.PropTypes.func,
-        siteURL: React.PropTypes.string
-    },
-    
+        siteURL: React.PropTypes.string,
 
+        //functions
+        onSectionClick: React.PropTypes.func
+
+    },
+
+
+    /**
+     * render the grid of sections
+     * @returns {XML}
+     */
     render(){
         return (
          
@@ -30,6 +41,10 @@ var Grid = React.createClass({
         );
     },
 
+    /**
+     * create an array of components for each section in the array
+     * @returns {Array} array of components
+     */
     renderSections(){
 
         var sectionsArray = [];

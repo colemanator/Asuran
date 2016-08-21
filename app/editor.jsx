@@ -5,12 +5,15 @@
 
 import React from 'react';
 import {render} from 'react-dom';
+import {SectionSelect} from '../app/editorOptions/SectionSelect.js'
 
 var Editor = React.createClass({
 
     propTypes:{
         selectedObjectKey: React.PropTypes.number,
         sectionsObject: React.PropTypes.array,
+
+        //functions
         onEdit: React.PropTypes.func,
         onEditorPositionClick: React.PropTypes.func,
         onEditorAddClick: React.PropTypes.func,
@@ -18,6 +21,64 @@ var Editor = React.createClass({
         onEditorDeleteClick: React.PropTypes.func
     },
 
+    handleChange(event){
+        this.props.onEdit(this.props.selectedObjectKey, event)
+    },
+
+    handlePositionClick(event,right){
+        if(right){
+            this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey+1);
+        } else {
+            this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey-1);
+        }
+
+    },
+
+    handleAddClick(){
+        this.props.onEditorAddClick();
+    },
+
+    handleDeleteClick(){
+        this.props.onEditorDeleteClick(this.props.selectedObjectKey);
+    },
+
+    /**
+     * for each property on the selected section create a label and input
+     * @returns {Array}
+     */
+    renderOptions(){
+
+        var editorContentArray = [];
+        var key = 0;
+
+        var selectedObject =  this.props.sectionsObject[this.props.selectedObjectKey];
+
+        for(let propertyName in selectedObject){
+
+            if(propertyName == 'id'){
+                editorContentArray.push(
+                    <h3 className="section-type-title" key={key}>{selectedObject[propertyName]}</h3>
+                );
+            } else {
+
+                editorContentArray.push(
+                    <div key={key}>
+                        <h4>{propertyName}</h4>
+                        <input type="text" defaultValue={selectedObject[propertyName]} name={propertyName} onChange={this.handleChange}/>
+                    </div>
+                );
+            }
+
+            key++
+        }
+
+        return editorContentArray;
+    },
+
+    /**
+     * render out the editor menu with all options and buttons
+     * @returns {XML}
+     */
     render(){
 
         return (
@@ -48,89 +109,8 @@ var Editor = React.createClass({
 
     },
 
-    renderOptions(){
-
-        var editorContentArray = [];
-        var key = 0;
-
-        var selectedObject =  this.props.sectionsObject[this.props.selectedObjectKey];
-
-        for(var propertyName in selectedObject){
-
-            if(propertyName == 'id'){
-                editorContentArray.push(
-                    <h3 className="section-type-title" key={key}>{selectedObject[propertyName]}</h3>
-                );
-            } else {
-
-                editorContentArray.push(
-                    <div key={key}>
-                        <h4>{propertyName}</h4>
-                        <input type="text" defaultValue={selectedObject[propertyName]} name={propertyName} onChange={this.handleChange}/>
-                    </div>
-                );
-            }
-
-            key++
-        }
-
-        return editorContentArray;
-    },
-
-    handleChange(event){
-        this.props.onEdit(this.props.selectedObjectKey, event)
-    },
-
-    handlePositionClick(event,right){
-        if(right){
-            this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey+1);
-        } else {
-            this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey-1);
-        }
-
-    },
-
-    handleAddClick(){
-        this.props.onEditorAddClick();
-    },
-
-    handleDeleteClick(){
-        this.props.onEditorDeleteClick(this.props.selectedObjectKey);
-    }
-
 
 });
-
-var SectionSelect = React.createClass({
-
-    PropTypes:{
-        sectionsObject: React.PropTypes.object,
-        selectedObjectKey: React.PropTypes.number,
-        onEditorSelectChange: React.PropTypes.func
-    },
-
-    render(){
-
-        return (
-            <div className="editor-section select">
-                <h3>Change Section Type</h3>
-                <select className="section-select" onChange={this.handleSelectChange} value={this.props.sectionsObject[this.props.selectedObjectKey].id}>
-                    <option value="agency-details">Agency Details</option>
-                    <option value="button-link">Agency Button Link</option>
-                    <option value="empty">Empty</option>
-                </select>
-            </div>
-        );
-    },
-
-    handleSelectChange(event){
-        this.props.onEditorSelectChange(event);
-    }
-
-
-
-});
-
 
 export {Editor}
 
