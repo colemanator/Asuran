@@ -40,10 +40,6 @@ var Window = React.createClass({
         this.props.onImportTextAreaChange(event.target.value);
     },
 
-    handleImportTextAreaClick(event){
-        event.target.value = '';
-    },
-
     /**
      * not sure if this should be broken into different components
      * Create one of the three different types of windows
@@ -87,7 +83,7 @@ var Window = React.createClass({
                 <div className={contentClassName}>
                     <h2>{this.props.title}</h2>
                     <div className="import">
-                        <textarea value={this.props.content}
+                        <textarea placeholder={this.props.content}
                                   onChange={this.handleImportTextAreaChange}
                                   onClick={this.handleImportTextAreaClick}
                         >

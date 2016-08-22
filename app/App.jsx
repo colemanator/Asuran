@@ -168,8 +168,8 @@ var App = React.createClass({
                     sectionsObject: this.state.sectionsObject,
                     windowState: {
                         display: "active",
-                        contentType: status.error,
-                        content: "message",
+                        contentType: 'message',
+                        content: status.error,
                         title: "Error"
                     }
                 });
@@ -183,6 +183,12 @@ var App = React.createClass({
      */
     handleWindowImportTextAreaChange(value){
         this.state.tempJSONString = value;
+        this.setState({windowState: {
+                display: "active",
+                contentType: 'import',
+                content: value,
+                title: "Import"
+        }});
     },
 
     /**
