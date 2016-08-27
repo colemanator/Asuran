@@ -5,7 +5,7 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import {SectionSelect} from '../app/editorOptions/SectionSelect.js'
+import {SectionSelect} from './editorOptions/SectionSelect.js'
 
 var Editor = React.createClass({
 

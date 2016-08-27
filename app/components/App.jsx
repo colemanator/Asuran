@@ -5,10 +5,10 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import  {Editor} from '../app/Editor.jsx'
-import {Grid} from '../app/Grid.jsx';
-import {HeaderContainer} from '../app/HeaderContainer.jsx'
-import {Window} from '../app/Window.jsx';
+import  {Editor} from './Editor.jsx'
+import {Grid} from './Grid.jsx';
+import {HeaderContainer} from './HeaderContainer.jsx'
+import {Window} from './Window.jsx';
 
 /**
  * App is the entry point react component and the state holder for the application, it handles all changes by calling
@@ -203,7 +203,6 @@ var App = React.createClass({
                     onSiteURLChange={this.handleHeaderSiteURLChange}
                     onExportClick={this.handleHeaderExportClick}
                     onImportClick={this.handleHeaderImportClick}
-
                 />
                 <main>
                     <Editor selectedObjectKey={this.state.selectedObjectKey}
@@ -214,7 +213,7 @@ var App = React.createClass({
                             onEditorSelectChange={this.handleEditorSelectChange}
                             onEditorDeleteClick={this.handleEditorDeleteClick}
                     />
-                    <Grid sectionsObject={this.state.sectionsObject}
+                    <Grid sections={this.state.sectionsObject.sections}
                           selectedObjectKey={this.state.selectedObjectKey}
                           onSectionClick={this.handleSectionClick}
                           siteURL={this.state.siteURL}

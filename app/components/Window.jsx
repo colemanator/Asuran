@@ -84,8 +84,8 @@ var Window = React.createClass({
                     <h2>{this.props.title}</h2>
                     <div className="import">
                         <textarea placeholder={this.props.content}
+                                  value=""
                                   onChange={this.handleImportTextAreaChange}
-                                  onClick={this.handleImportTextAreaClick}
                         >
                         </textarea>
                     </div>

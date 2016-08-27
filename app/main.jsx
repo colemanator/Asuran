@@ -7,7 +7,7 @@ require('../assets/less/main.less');
 
 import React from 'react';
 import {render} from 'react-dom';
-import {App} from '../app/App.jsx'
+import {App} from './components/App.jsx'
 import {Sections} from '../app/sectionsDelegate';
 
 //create sectionsObject and link it to it's deligate

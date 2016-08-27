@@ -12,21 +12,18 @@ import {render} from 'react-dom';
 var AgencyDetailsSection = React.createClass({
 
     propTypes: {
-        sectionObject: React.PropTypes.object,
+        //standard
         index: React.PropTypes.number,
-        onSectionClick: React.PropTypes.func,
-        selectedObjectKey: React.PropTypes.number
-    },
-    
+        selectedObjectKey: React.PropTypes.number,
 
-    getDefaultProps(){
-        return {
-            sectionObject: {
-                id: 'agency-details',
-                size: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3',
-                colour: 'header-colors'
-            }
-        }
+        //component specific
+        id: React.PropTypes.string,
+        size: React.PropTypes.string,
+        colour: React.PropTypes.string,
+
+        //functions
+        onSectionClick: React.PropTypes.func
+
     },
 
     handleClick(){
@@ -36,7 +33,7 @@ var AgencyDetailsSection = React.createClass({
     render(){
 
         var classNames = 'multisection-section section-agency-details col-sm-6 ';
-        classNames += this.props.sectionObject.size + this.props.sectionObject.colour;
+        classNames += this.props.size + this.props.colour;
 
         if(this.props.index == this.props.selectedObjectKey){
             classNames += ' selected';

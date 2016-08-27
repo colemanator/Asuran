@@ -9,26 +9,23 @@ import {render} from 'react-dom';
 var ButtonLinkSection = React.createClass({
 
     propTypes: {
-        sectionObject: React.PropTypes.object,
+        //standard
         index: React.PropTypes.number,
-        onSectionClick: React.PropTypes.func,
         selectedObjectKey: React.PropTypes.number,
-        siteURL: React.PropTypes.string
-    },
+        
+        //component specific
+        id: React.PropTypes.string,
+        size: React.PropTypes.string,
+        bgImageUrl: React.PropTypes.string,
+        caption: React.PropTypes.string,
+        href: React.PropTypes.string,
+        target: React.PropTypes.string,
+        buttonText: React.PropTypes.string,
+        transparency: React.PropTypes.string,
+        siteURL: React.PropTypes.string,
 
-    getDefaultProps(){
-        return {
-            sectionObject: {
-                id: "button-link",
-                size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
-                bgImageUrl: "/wp-content/uploads/2015/01/8009906473_81da7b8652_o-e1420495660219.jpg",
-                caption: "Looking For a Property To Rent",
-                href: "/listings/",
-                buttonText: "Recent listings",
-                transparency: '0.5',
-                siteURL: 'http://felix.e1.siteloft.com'
-            }
-        };
+        //functions
+        onSectionClick: React.PropTypes.func,
     },
 
     handleClick(){
@@ -37,11 +34,11 @@ var ButtonLinkSection = React.createClass({
 
     render(){
 
-        var sectionClassName = 'multisection-section section-button-link col-sm-6 ' + this.props.sectionObject.size;
-        var href = this.props.sectionObject.href ? this.props.sectionObject.href: '';
+        var sectionClassName = 'multisection-section section-button-link col-sm-6 ' + this.props.size;
+        var href = this.props.href ? this.props.href: '';
         var siteURL = this.props.siteURL ? this.props.siteURL : '';
         var sectionStyles = {
-            backgroundImage: 'url(\'' + siteURL + this.props.sectionObject.bgImageUrl + '\')'
+            backgroundImage: 'url(\'' + siteURL + this.props.bgImageUrl + '\')'
         };
 
         if(this.props.index == this.props.selectedObjectKey){
@@ -49,7 +46,7 @@ var ButtonLinkSection = React.createClass({
         }
 
         var divStyle = {
-            backgroundColor: 'rgba(0,0,0,' + this.props.sectionObject.transparency + ') !important'
+            backgroundColor: 'rgba(0,0,0,' + this.props.transparency + ') !important'
         };
 
         return (
@@ -62,10 +59,10 @@ var ButtonLinkSection = React.createClass({
                         <div className="l-table-row">
                             <div className="l-table-cell">
                                 <div className="section-button-link-container">
-                                    <p className="section-button-link-caption">{this.props.sectionObject.caption}</p>
+                                    <p className="section-button-link-caption">{this.props.caption}</p>
                                     <a href={href}
-                                       target={this.props.sectionObject.target}
-                                       className="btn brand-colors brand-colors-hover">{ this.props.sectionObject.buttonText }
+                                       target={this.props.target}
+                                       className="btn brand-colors brand-colors-hover">{ this.props.buttonText }
                                     </a>
                                 </div>
                             </div>

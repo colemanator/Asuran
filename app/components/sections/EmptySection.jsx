@@ -6,12 +6,15 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-var Empty = React.createClass({
+var EmptySection = React.createClass({
 
     propTypes:{
+        //standard
         index: React.PropTypes.number,
-        onSectionClick: React.PropTypes.func,
-        selectedObjectKey: React.PropTypes.number
+        selectedObjectKey: React.PropTypes.number,
+
+        //functions
+        onSectionClick: React.PropTypes.func
     },
 
     handleClick(){
@@ -36,4 +39,4 @@ var Empty = React.createClass({
     }
 });
 
-export {Empty};
+export {EmptySection};

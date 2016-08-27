@@ -34,24 +34,14 @@ var Sections = {
      * @returns {object} true if successful false if otherwise
      */
     import(JSONString){
-        try{
-            //create backup of current object in case parse fails
-            var backup = this.export();
 
+        //create backup of current object in case parse fails
+        var backup = JSON.stringify(this);
+
+        try{
             //parse
             this.version = JSON.parse(JSONString).version;
             this.sections = JSON.parse(JSONString).sections;
-
-            //Check to see if the object contains correct values
-            if(Array.isArray(this.sections) && !isNaN(this.version)) {
-                if(this.sections.length > 0) {
-                    return true;
-                } else {
-                    this.version = JSON.parse(backup).version;
-                    this.sections = JSON.parse(backup).sections;
-                    return {success: false, error: 'JSON was parsed correctly but values provided where not correct for this App'};
-                }
-            }
         //Catch any syntax errors thrown by JSON.parse
         } catch (error){
             this.version = JSON.parse(backup).version;
@@ -59,7 +49,18 @@ var Sections = {
             return {success: false, error: 'JSON String provided not valid, please ensure valid JSON string is provided'};
         }
 
-        return {success: true};
+        //Check to see if the object contains correct values
+        if(Array.isArray(this.sections) && !isNaN(this.version)) {
+            if(this.sections.length > 0) {
+                debugger;
+                this.processSections();
+                return {success: true};
+            } else {
+                this.version = JSON.parse(backup).version;
+                this.sections = JSON.parse(backup).sections;
+                return {success: false, error: 'JSON was parsed correctly but values provided where not correct for this App'};
+            }
+        }
 
     },
 
@@ -67,7 +68,34 @@ var Sections = {
      * Exports delegates this object as JSON
      */
     export(){
-        return JSON.stringify(this);
+
+        //create Object to be created and exported as JSON
+        var exportObject = {
+            version: this.version,
+            sections: [
+
+            ]
+        };
+
+        var exportIndex = 0;
+
+        //Copy this.sections where property is valid
+        for(let i = 0; i < this.sections.length; i++){
+            //if section is of type empty don't copy
+            if(this.sections[i].id != 'empty') {
+                exportObject.sections[exportIndex] =  {};
+                for(let key in this.sections[i]){
+                    //if property does not have an empty value copy it to export object
+                    if (this.sections[i][key] != '' && this.sections[i][key]) {
+                        exportObject.sections[exportIndex][key] = this.sections[i][key];
+                    }
+                }
+                exportIndex++;
+            }
+        }
+
+        //return the newly created Object
+        return JSON.stringify(exportObject);
     },
 
     /**
@@ -105,7 +133,41 @@ var Sections = {
         }
     },
 
-    //:todo eventually it might be worth creating a saving system using localStorage
+    /**
+     * this function validates the state each section against the defaults
+     */
+    processSections(){
+
+        for (let i = 0; i < this.sections.length; i++){
+
+            //does the imported section have an id
+            if(this.sections[i].hasOwnProperty('id')){
+                let defaultObject = this.getDefault(this.sections[i].id);
+
+                //check if default object found
+                if(defaultObject != false) {
+                    //check for missing properies and add them with empty string as value
+                    for (let property in defaultObject) {
+                        if (!this.sections[i].hasOwnProperty(property)) {
+                            this.sections[i][property] = '';
+                        }
+                    }
+                    //check for extra properties and remove them if they are not in defaults
+                    for (let property in this.sections[i]) {
+                        if (!defaultObject.hasOwnProperty(property)) {
+                            delete this.sections[i][property];
+                        }
+                    }
+                } else {
+                    //No id found delete
+                    this.delete(topIndex);
+                }
+            } else {
+                //no Matching Object found delete
+                this.delete(topIndex);
+            }
+        }
+    },
 
     /**
      * This function will set the section at the index provided with the default values for the section ID provided.
@@ -113,27 +175,43 @@ var Sections = {
      * @param id
      * @returns {boolean}
      */
-    set(index, id){
+    set(index,id){
+        if (this.getDefault(id)) {
+            this.sections[index] = this.getDefault(id);
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    /**
+     * This function will get the Default values of the section for the id provided.
+     * This was easier than trying to copy a 'defaultSections' object
+     * @param id
+     * @returns {object||boolean}
+     */
+    getDefault(id){
         //this will be verbose but easier to understand and quicker than copying values from a default object
         switch(id){
             case 'agency-details':
-                this.sections[index] = {
+                return {
                         id: 'agency-details',
                         size: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3',
                         colour: ' brand-bg brand-style-fg'
                     };
                 break;
             case 'empty':
-                this.sections[index] = {
+                return {
                         id: 'empty'
                     };
                 break;
             case 'button-link':
-                this.sections[index] = {
+                return {
                     id: "button-link",
                     size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
                     bgImageUrl: "/wp-content/uploads/2015/01/8009906473_81da7b8652_o-e1420495660219.jpg",
                     caption: "Looking For a Property To Rent",
+                    target: '_blank',
                     href: "/listings/",
                     buttonText: "Recent listings",
                     transparency: '0.5'
@@ -142,9 +220,7 @@ var Sections = {
             default:
                 return false;
         }
-        //return true on success
-        return true;
-    }
+    },
     
 };
 
