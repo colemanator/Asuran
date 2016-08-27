@@ -33,7 +33,7 @@ var AgencyDetailsSection = React.createClass({
     render(){
 
         var classNames = 'multisection-section section-agency-details col-sm-6 ';
-        classNames += this.props.size + this.props.colour;
+        classNames += this.props.size + ' ' + this.props.colour;
 
         if(this.props.index == this.props.selectedObjectKey){
             classNames += ' selected';
