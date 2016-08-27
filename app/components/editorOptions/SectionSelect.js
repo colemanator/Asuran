@@ -30,6 +30,8 @@ var SectionSelect = React.createClass({
                 <select className="section-select" onChange={this.handleSelectChange} value={this.props.sectionsObject[this.props.selectedObjectKey].id}>
                     <option value="agency-details">Agency Details</option>
                     <option value="button-link">Agency Button Link</option>
+                    <option value="image">Image</option>
+                    <option value="image-text">Image Text</option>
                     <option value="empty">Empty</option>
                 </select>
             </div>

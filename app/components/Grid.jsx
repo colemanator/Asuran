@@ -11,6 +11,7 @@ import {AgencyDetailsSection} from './sections/AgencyDetailsSection.jsx';
 import {ButtonLinkSection} from './sections/ButtonLinkSection.jsx';
 import {EmptySection} from './sections/EmptySection.jsx';
 import {ImageSection} from './sections/ImageSection.jsx';
+import {ImageTextSection} from './sections/ImageTextSection.jsx';
 
 /**
  * Grid component responsible for generating the sections based on the sections Object provided
@@ -101,7 +102,19 @@ var Grid = React.createClass({
                     );
                     break;
                 case 'image-text':
-                    sectionsArray.push(<imageTextSection/>);
+                    sectionsArray.push(
+                        <ImageTextSection
+                            key={i}
+                            index={i}
+                            selectedObjectKey={this.props.selectedObjectKey}
+                            size={this.props.sections[i].size}
+                            bgImageURL={this.props.sections[i].bgImageUrl}
+                            caption={this.props.sections[i].caption}
+                            transparency={this.props.sections[i].transparency}
+                            siteURL={this.props.sections[i].siteURL}
+                            onSectionClick={this.props.onSectionClick}
+                        />
+                    );
                     break;
                 case 'link-list':
                     sectionsArray.push(<linkListSection/>);

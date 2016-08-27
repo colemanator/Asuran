@@ -199,12 +199,10 @@ var Sections = {
                         size: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3',
                         colour: ' brand-bg brand-style-fg'
                     };
-                break;
             case 'empty':
                 return {
                         id: 'empty'
                     };
-                break;
             case 'button-link':
                 return {
                     id: "button-link",
@@ -216,7 +214,20 @@ var Sections = {
                     buttonText: "Recent listings",
                     transparency: '0.5'
                 };
-                break;
+            case 'image':
+                return {
+                    id: "image",
+                    size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
+                    bgImageUrl: "http://lorempixel.com/500/500/city/2/"
+                };
+            case 'image-text':
+                return {
+                    id: "image-text",
+                    size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
+                    caption: "The greatest real estate on earth #bombdiggity",
+                    transparency: "0.6",
+                    bgImageUrl: "http://lorempixel.com/500/500/city/2/"
+                };
             default:
                 return false;
         }

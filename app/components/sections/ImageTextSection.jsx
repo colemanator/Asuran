@@ -1,17 +1,19 @@
 /**
- * Created by Peter on 22/08/2016.
+ * Created by Peter on 27/08/2016.
  */
 'use strict';
 
 import React from 'react';
 import {render} from 'react-dom';
 
-var ImageSection = React.createClass({
+var ImageTextSection = React.createClass({
 
     propTypes:{
         //standard
         index: React.PropTypes.number,
         selectedObjectKey: React.PropTypes.number,
+        transparency: React.PropTypes.string,
+        caption: React.PropTypes.string,
 
         //component specific
         size: React.PropTypes.string,
@@ -26,8 +28,16 @@ var ImageSection = React.createClass({
         this.props.onSectionClick(this.props.index);
     },
 
-    render(){
 
+    caption(){
+        if(this.props.caption != ''){
+            return (
+                <p className="section-image-text-caption">{this.props.caption}</p>
+            );
+        }
+    },
+
+    render(){
 
         //create classes and style
         var classNames = "multisection-section section-image col-sm-6 " + this.props.size;
@@ -35,6 +45,19 @@ var ImageSection = React.createClass({
             classNames += ' selected';
         }
 
+        //if transparency isn't set then set default
+        var transparency;
+        if(this.props.transparency == ''){
+            transparency = '0.6';
+        } else {
+            transparency = this.props.transparency;
+        }
+
+        var OverlayStyles = {
+            backgroundColor: "rgba(0,0,0," + transparency + ")"
+        };
+
+        //Check to see if the image url provided has https? if so don't prepend site URL
         var imageURL;
         if(this.props.bgImageURL.match(/https?:\/\//)) {
             imageURL = this.props.bgImageURL;
@@ -51,10 +74,19 @@ var ImageSection = React.createClass({
                 <div className="select-overlay" onClick={this.handleClick}>
                     <div className="center-flex-item"> Click to Edit</div>
                 </div>
+                <div className="multisection-section-overlay l-table" style={OverlayStyles}>
+                    <div className="l-table-row">
+                        <div className="l-table-cell">
+                            <div className="section-image-text-container">
+                                {this.caption()}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         );
     }
 });
 
 
-export {ImageSection};
+export {ImageTextSection};
