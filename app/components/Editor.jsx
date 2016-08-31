@@ -5,7 +5,8 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import {SectionSelect} from './editorOptions/SectionSelect.js'
+import {SectionSelect} from './editorOptions/SectionSelect.jsx'
+import {ListOption} from './editorOptions/ListOption.jsx'
 
 var Editor = React.createClass({
 
@@ -53,13 +54,20 @@ var Editor = React.createClass({
 
         var selectedObject =  this.props.sectionsObject[this.props.selectedObjectKey];
 
-        for(let propertyName in selectedObject){
+        for(let propertyName in selectedObject) {
 
-            if(propertyName == 'id'){
+            if (propertyName == 'id') {
                 editorContentArray.push(
                     <h3 className="section-type-title" key={key}>{selectedObject[propertyName]}</h3>
                 );
-            } else {
+            } else if (propertyName == 'list'){
+                editorContentArray.push(
+                    <ListOption
+                        key={key}
+                        sectionOptionList={selectedObject[propertyName]}
+                    />
+                );
+            }else {
 
                 editorContentArray.push(
                     <div key={key}>

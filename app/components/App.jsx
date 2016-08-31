@@ -191,6 +191,29 @@ var App = React.createClass({
         }});
     },
 
+    handleEditorInnerListInputChange(index, name, value){
+        var key = this.state.selectedObjectKey;
+        //update value of inner list
+        this.state.sectionsObject[key]['list'][index][name] = value;
+        this.setState({sectionsObject: this.state.sectionsObject});
+    },
+
+    handleRemoveListClick(index){
+        var key = this.state.selectedObjectKey;
+        //remove inner list
+        this.state.sectionsObject[key]['list'][index].splice(index,1);
+        this.setState({sectionsObject: this.state.sectionsObject});
+
+    },
+
+    handleAddListClick(){
+        var key = this.state.selectedObjectKey;
+        this.sectionsObject[key]['list'].push({
+            text: '',
+            href: ''
+        });
+    },
+
     /**
      * Render all components and thier children
      * @returns {XML}

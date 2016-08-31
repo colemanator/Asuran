@@ -228,6 +228,34 @@ var Sections = {
                     transparency: "0.6",
                     bgImageUrl: "http://lorempixel.com/500/500/city/2/"
                 };
+            case 'link-list':
+                return {
+                    id: "link-list",
+                    size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
+                    colors: "brand-bg brand-style-fg",
+                    list: [
+                        {
+                            text: "Contact us",
+                            href: "/offcanvas_form/?location=agency_contact"
+                        },
+                        {
+                            text: "Application form",
+                            href:"/offcanvas_form/?location=sales_appraisal"
+                        },
+                        {
+                            text: "Open to inspect",
+                            href: "/openhomes/?type=ofi"
+                        },
+                        {
+                            text: "Request a rental appraisal",
+                            href: "/offcanvas_form/?location=rental_appraisal"
+                        },
+                        {
+                            text: "About us",
+                            href: "/agency/loft-realty"
+                        }
+                    ]
+                };
             default:
                 return false;
         }

@@ -23,7 +23,6 @@ var SectionSelect = React.createClass({
      * @returns {XML}
      */
     render(){
-
         return (
             <div className="editor-section select">
                 <h3>Change Section Type</h3>
@@ -32,10 +31,12 @@ var SectionSelect = React.createClass({
                     <option value="button-link">Agency Button Link</option>
                     <option value="image">Image</option>
                     <option value="image-text">Image Text</option>
+                    <option value="link-list">Link List</option>
                     <option value="empty">Empty</option>
                 </select>
             </div>
         );
+
     },
 });
 

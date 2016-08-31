@@ -9,25 +9,26 @@ import {render} from 'react-dom';
 var ListOption = React.createClass({
 
     propTypes: {
-        sectionOptionList: React.PropTypes.object,
+        sectionOptionList: React.PropTypes.array,
 
         //functions
-        onHandleInnerListInputChange: React.PropTypes.func,
-        onRemoveListItemClick: React.PropTypes.func,
+        onInnerListInputChange: React.PropTypes.func,
+        onRemoveListClick: React.PropTypes.func,
         onAddListClick: React.PropTypes.func
 
     },
 
-    HandleInnerListInputChange(i, name){
-
+    HandleInnerListInputChange(event ,index, name){
+        var value = event.target.value;
+        this.props.onInnerListInputChange(index, name, value);
     },
 
-    handleRemoveInnerListClick(){
-
+    handleRemoveInnerListClick(index){
+        this.props.onRemoveListClick(index);
     },
 
     handleAddListClick(){
-
+        this.props.onAddListClick();
     },
 
     /**
@@ -38,13 +39,15 @@ var ListOption = React.createClass({
     innerList(i){
 
         var innerList = [];
+        var key = 0;
 
         for (let property in this.props.sectionOptionList[i]){
             innerList.push(
-                <li>
+                <li key={key}>
                     <input type="text" defaultValue={this.props.sectionOptionList[i][property]} onChange={this.HandleInnerListInputChange.bind(this, [i,property])} name={property}/>
                 </li>
             );
+            key++;
         }
 
         return innerList;
@@ -61,9 +64,9 @@ var ListOption = React.createClass({
         for(let i = 0; i < this.props.sectionOptionList.length; i++){
             list.push(
                 <ul key={i}>
-                    {innerList(i)}
+                    {this.innerList(i)}
                     <li>
-                        <button onClick={this.handleRemoveInnerListClick}>Remove</button>
+                        <button onClick={this.handleRemoveInnerListClick.bind(this, i)}>Remove</button>
                     </li>
                 </ul>
             );

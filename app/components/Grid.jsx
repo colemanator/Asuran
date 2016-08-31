@@ -117,7 +117,10 @@ var Grid = React.createClass({
                     );
                     break;
                 case 'link-list':
-                    sectionsArray.push(<linkListSection/>);
+                    sectionsArray.push(
+                        <linkListSection
+                            key={i}
+                        />);
                     break;
                 case 'listings-slider':
                     sectionsArray.push(<listingsSliderSection/>);
