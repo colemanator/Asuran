@@ -18,9 +18,9 @@ var ListOption = React.createClass({
 
     },
 
-    HandleInnerListInputChange(event ,index, name){
+    HandleInnerListInputChange(args, event){
         var value = event.target.value;
-        this.props.onInnerListInputChange(index, name, value);
+        this.props.onInnerListInputChange(args[0], args[1], value);
     },
 
     handleRemoveInnerListClick(index){
@@ -62,13 +62,18 @@ var ListOption = React.createClass({
         var list = [];
 
         for(let i = 0; i < this.props.sectionOptionList.length; i++){
+
+            var classNames = 'single-link-options';
+
             list.push(
-                <ul key={i}>
-                    {this.innerList(i)}
-                    <li>
-                        <button onClick={this.handleRemoveInnerListClick.bind(this, i)}>Remove</button>
-                    </li>
-                </ul>
+                <li key={i} className={classNames}>
+                    <ul>
+                        {this.innerList(i)}
+                        <li>
+                            <div className="button dark" onClick={this.handleRemoveInnerListClick.bind(this, i)}>Remove</div>
+                        </li>
+                    </ul>
+                </li>
             );
         }
 
@@ -83,7 +88,7 @@ var ListOption = React.createClass({
                 <ul>
                     {this.list()}
                 </ul>
-                <button onClick={this.handleAddListClick}>Add</button>
+                <div className="button dark" onClick={this.handleAddListClick}>Add</div>
             </div>
         );
     }

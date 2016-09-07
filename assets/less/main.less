@@ -26,6 +26,16 @@
   cursor: pointer;
   font-size: 12px;
 
+  &.dark{
+    background-color: #616161;
+    color: white;
+    flex:1;
+    &:hover{
+      color: #616161;
+      background-color: #ffdd20;
+    }
+  }
+
   &:hover{
     background-color: #ffdd20;
     color: white;
@@ -66,6 +76,24 @@
       padding: 0;
       font-size: 14px;
       color: #616161;
+    }
+
+    .list-option {
+
+      ul {
+        .single-link-options {
+
+          ul {
+            font-size: 10px;
+            list-style: none;
+
+            .button{
+              width: 50%;
+              margin-right: 100%;
+            }
+          }
+        }
+      }
     }
   }
 

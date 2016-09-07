@@ -194,24 +194,25 @@ var App = React.createClass({
     handleEditorInnerListInputChange(index, name, value){
         var key = this.state.selectedObjectKey;
         //update value of inner list
-        this.state.sectionsObject[key]['list'][index][name] = value;
+        this.state.sectionsObject.sections[key].list[index][name] = value;
         this.setState({sectionsObject: this.state.sectionsObject});
     },
 
     handleRemoveListClick(index){
         var key = this.state.selectedObjectKey;
         //remove inner list
-        this.state.sectionsObject[key]['list'][index].splice(index,1);
+        this.state.sectionsObject.sections[key].list.splice(index,1);
         this.setState({sectionsObject: this.state.sectionsObject});
 
     },
 
     handleAddListClick(){
         var key = this.state.selectedObjectKey;
-        this.sectionsObject[key]['list'].push({
+        this.state.sectionsObject.sections[key].list.push({
             text: '',
             href: ''
         });
+        this.setState({sectionsObject: this.state.sectionsObject});
     },
 
     /**
@@ -235,6 +236,9 @@ var App = React.createClass({
                             onEditorAddClick={this.handleEditorAddClick}
                             onEditorSelectChange={this.handleEditorSelectChange}
                             onEditorDeleteClick={this.handleEditorDeleteClick}
+                            onListAddListClick={this.handleAddListClick}
+                            onListRemoveListClick={this.handleRemoveListClick}
+                            onListInnerListInputChange={this.handleEditorInnerListInputChange}
                     />
                     <Grid sections={this.state.sectionsObject.sections}
                           selectedObjectKey={this.state.selectedObjectKey}

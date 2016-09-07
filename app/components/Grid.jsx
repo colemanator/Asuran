@@ -12,6 +12,7 @@ import {ButtonLinkSection} from './sections/ButtonLinkSection.jsx';
 import {EmptySection} from './sections/EmptySection.jsx';
 import {ImageSection} from './sections/ImageSection.jsx';
 import {ImageTextSection} from './sections/ImageTextSection.jsx';
+import {LinkListSection} from './sections/LinkListSection.jsx';
 
 /**
  * Grid component responsible for generating the sections based on the sections Object provided
@@ -118,8 +119,15 @@ var Grid = React.createClass({
                     break;
                 case 'link-list':
                     sectionsArray.push(
-                        <linkListSection
+                        <LinkListSection
                             key={i}
+                            index={i}
+                            selectedObjectKey={this.props.selectedObjectKey}
+                            size={this.props.sections[i].size}
+                            color={this.props.sections[i].color}
+                            highlightColor={this.props.sections[i]['heighlight-color']}
+                            list={this.props.sections[i].list}
+                            onSectionClick={this.props.onSectionClick}
                         />);
                     break;
                 case 'listings-slider':

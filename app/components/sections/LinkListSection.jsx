@@ -17,8 +17,8 @@ var LinkListSection = React.createClass({
         size: React.PropTypes.string,
         color: React.PropTypes.string,
         //unfortunately
-        "heighlight-color": React.PropTypes.string,
-        list: React.PropTypes.object,
+        highlightColor: React.PropTypes.string,
+        list: React.PropTypes.array,
 
         //functions
         onSectionClick: React.PropTypes.func
@@ -27,7 +27,7 @@ var LinkListSection = React.createClass({
     title(){
         if(this.props.title){
 
-            var classNames = 'divider' + this.props['heightlight-color'];
+            var classNames = 'divider' + this.props.highlightColor;
 
             return(
                 <div>
@@ -72,7 +72,7 @@ var LinkListSection = React.createClass({
         }
 
         return(
-            <section className={classNames} style={styles}>
+            <section className={classNames}>
                 <div className="select-overlay" onClick={this.handleClick}>
                     <div className="center-flex-item"> Click to Edit</div>
                 </div>

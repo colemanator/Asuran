@@ -19,7 +19,11 @@ var Editor = React.createClass({
         onEditorPositionClick: React.PropTypes.func,
         onEditorAddClick: React.PropTypes.func,
         onEditorSelectChange: React.PropTypes.func,
-        onEditorDeleteClick: React.PropTypes.func
+        onEditorDeleteClick: React.PropTypes.func,
+
+        onListInnerListInputChange: React.PropTypes.func,
+        onListRemoveListClick: React.PropTypes.func,
+        onListAddListClick: React.PropTypes.func
     },
 
     handleChange(event){
@@ -62,10 +66,15 @@ var Editor = React.createClass({
                 );
             } else if (propertyName == 'list'){
                 editorContentArray.push(
-                    <ListOption
-                        key={key}
-                        sectionOptionList={selectedObject[propertyName]}
-                    />
+                    <div key={key}>
+                        <h4>{propertyName}</h4>
+                        <ListOption
+                            sectionOptionList={selectedObject[propertyName]}
+                            onAddListClick={this.props.onListAddListClick}
+                            onRemoveListClick={this.props.onListRemoveListClick}
+                            onInnerListInputChange={this.props.onListInnerListInputChange}
+                        />
+                    </div>
                 );
             }else {
 
