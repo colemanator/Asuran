@@ -125,6 +125,7 @@ var Grid = React.createClass({
                             selectedObjectKey={this.props.selectedObjectKey}
                             size={this.props.sections[i].size}
                             color={this.props.sections[i].color}
+                            linkColor={this.props.sections[i]['link_color']}
                             highlightColor={this.props.sections[i]['heighlight-color']}
                             list={this.props.sections[i].list}
                             onSectionClick={this.props.onSectionClick}

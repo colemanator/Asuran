@@ -16,6 +16,7 @@ var LinkListSection = React.createClass({
         //Component specific
         size: React.PropTypes.string,
         color: React.PropTypes.string,
+        linkColor: React.PropTypes.string,
         //unfortunately
         highlightColor: React.PropTypes.string,
         list: React.PropTypes.array,
@@ -61,7 +62,7 @@ var LinkListSection = React.createClass({
 
     render(){
 
-        var classNames = "multisection-section section-image col-sm-6 " + this.props.size + ' ' + this.props.color;
+        var classNames = "multisection-section section-link-list col-sm-6 " + this.props.size + ' ' + this.props.color;
         if(this.props.index == this.props.selectedObjectKey){
             classNames += ' selected';
         }
@@ -81,7 +82,7 @@ var LinkListSection = React.createClass({
                         <div className="l-table-cell" style={tableStyles}>
                             <div className="section-link-list-container">
                                 {this.title()}
-                                <ul className="{{ link_color }}">
+                                <ul className={this.props.linkColor}>
                                     {this.list()}
                                 </ul>
                             </div>
