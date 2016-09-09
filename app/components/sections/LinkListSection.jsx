@@ -20,6 +20,7 @@ var LinkListSection = React.createClass({
         //unfortunately
         highlightColor: React.PropTypes.string,
         list: React.PropTypes.array,
+        title: React.PropTypes.string,
 
         //functions
         onSectionClick: React.PropTypes.func

@@ -127,6 +127,7 @@ var Grid = React.createClass({
                             colors={this.props.sections[i].colors}
                             linkColor={this.props.sections[i]['link_color']}
                             highlightColor={this.props.sections[i]['heighlight-color']}
+                            title={this.props.sections[i].title}
                             list={this.props.sections[i].list}
                             onSectionClick={this.props.onSectionClick}
                         />);

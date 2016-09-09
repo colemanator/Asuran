@@ -235,6 +235,7 @@ var Sections = {
                     colors: "brand-bg brand-style-fg",
                     "link_color": "black",
                     "heighlight-color": "",
+                    title: "SiteLoft",
                     list: [
                         {
                             text: "Contact us",
