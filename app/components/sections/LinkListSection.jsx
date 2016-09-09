@@ -15,7 +15,7 @@ var LinkListSection = React.createClass({
 
         //Component specific
         size: React.PropTypes.string,
-        color: React.PropTypes.string,
+        colors: React.PropTypes.string,
         linkColor: React.PropTypes.string,
         //unfortunately
         highlightColor: React.PropTypes.string,
@@ -23,6 +23,10 @@ var LinkListSection = React.createClass({
 
         //functions
         onSectionClick: React.PropTypes.func
+    },
+
+    handleClick(){
+        this.props.onSectionClick(this.props.index);
     },
 
     title(){
@@ -62,7 +66,7 @@ var LinkListSection = React.createClass({
 
     render(){
 
-        var classNames = "multisection-section section-link-list col-sm-6 " + this.props.size + ' ' + this.props.color;
+        var classNames = "multisection-section section-link-list col-sm-6 " + this.props.size + ' ' + this.props.colors;
         if(this.props.index == this.props.selectedObjectKey){
             classNames += ' selected';
         }

@@ -233,6 +233,8 @@ var Sections = {
                     id: "link-list",
                     size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
                     colors: "brand-bg brand-style-fg",
+                    "link_color": "black",
+                    "heighlight-color": "",
                     list: [
                         {
                             text: "Contact us",
