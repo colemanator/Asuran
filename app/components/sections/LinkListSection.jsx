@@ -30,6 +30,10 @@ var LinkListSection = React.createClass({
         this.props.onSectionClick(this.props.index);
     },
 
+    /**
+     * Title for link list seciton
+     * @returns {XML}
+     */
     title(){
         if(this.props.title){
 
@@ -44,6 +48,10 @@ var LinkListSection = React.createClass({
         }
     },
 
+    /**
+     * Generate an array of links from the list prop
+     * @returns {Array}
+     */
     list(){
         if(this.props.list.length > 0){
 
@@ -67,6 +75,7 @@ var LinkListSection = React.createClass({
 
     render(){
 
+        //create class names from prop and add select of section is selected
         var classNames = "multisection-section section-link-list col-sm-6 " + this.props.size + ' ' + this.props.colors;
         if(this.props.index == this.props.selectedObjectKey){
             classNames += ' selected';
