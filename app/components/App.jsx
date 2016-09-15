@@ -19,6 +19,7 @@ var App = React.createClass({
     propTypes:{
         sectionsObject: React.PropTypes.object,
         siteURL: React.PropTypes.string,
+        onLoad: React.PropTypes.func
     },
 
     /**
@@ -37,6 +38,10 @@ var App = React.createClass({
             },
             tempJSONString: ''
         }
+    },
+
+    componentDidMount(){
+        this.props.onLoad();
     },
 
     /**

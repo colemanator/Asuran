@@ -10,6 +10,13 @@ import {render} from 'react-dom';
 import {App} from './components/App.jsx'
 import {Sections} from '../app/sectionsDelegate';
 
+/**
+ * Hide the loader, called on App's componentDidMount call
+ */
+function hideLoader(){
+    document.getElementById('loading-overlay').style.display = 'none';
+}
+
 //create sectionsObject and link it to it's deligate
 var sectionsObject = Object.create(Sections);
 
@@ -17,4 +24,8 @@ var sectionsObject = Object.create(Sections);
 sectionsObject.init();
 
 //Render out app
-render(React.createElement(App,{sectionsObject, siteURL: 'http://felix.e1.siteloft.com'}),document.getElementById('app'));
+render(React.createElement(App,{
+    sectionsObject,
+    siteURL: 'http://felix.e1.siteloft.com',
+    onLoad: hideLoader
+}),document.getElementById('app'));
