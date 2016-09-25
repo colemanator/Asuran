@@ -33,6 +33,7 @@ var SectionSelect = React.createClass({
                     <option value="image-text">Image Text</option>
                     <option value="link-list">Link List</option>
                     <option value="empty">Empty</option>
+                    <option value="agency-map">Agency map</option>
                 </select>
             </div>
         );

@@ -13,6 +13,7 @@ import {EmptySection} from './sections/EmptySection.jsx';
 import {ImageSection} from './sections/ImageSection.jsx';
 import {ImageTextSection} from './sections/ImageTextSection.jsx';
 import {LinkListSection} from './sections/LinkListSection.jsx';
+import {AgencyMapSection} from './sections/AgencyMapSection.jsx';
 
 /**
  * Grid component responsible for generating the sections based on the sections Object provided
@@ -68,7 +69,16 @@ var Grid = React.createClass({
                     );
                     break;
                 case 'agency-map':
-                    sectionsArray.push(<agencyMapSection/>);
+                    sectionsArray.push(
+                        <AgencyMapSection
+                            key={i}
+                            index={i}
+                            selectedObjectKey={this.props.selectedObjectKey}
+                            onSectionClick={this.props.onSectionClick}
+                            size={this.props.sections[i].size}
+                            noDefault={this.props.sections[i].noDefault}
+                        />
+                    );
                     break;
                 case 'button-link':
                     sectionsArray.push(

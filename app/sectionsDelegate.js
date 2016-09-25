@@ -259,6 +259,13 @@ var Sections = {
                         }
                     ]
                 };
+                break;
+            case 'agency-map':
+                return {
+                    id: "agency-map",
+                    size: "col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-ws-3",
+                    noDefault: ""
+                };
             default:
                 return false;
         }
