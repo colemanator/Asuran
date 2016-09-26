@@ -7,7 +7,7 @@ var APP_DIR = path.resolve(__dirname, './app');
 var LESS_DIR = path.resolve(__dirname, './assets/less');
 
 var config = {
-    entry: APP_DIR + '/main.js',
+    entry: APP_DIR + '/main.jsx',
     output: {
         path: BUILD_DIR + '/js',
         filename: 'bundle.js'
