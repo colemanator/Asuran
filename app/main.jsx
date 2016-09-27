@@ -7,7 +7,7 @@ require('../assets/less/main.less');
 
 import React from 'react';
 import {render} from 'react-dom';
-import {App} from './components/App.jsx'
+import App from './components/App.jsx'
 import {Sections} from '../app/sectionsDelegate';
 
 /**
@@ -24,8 +24,10 @@ var sectionsObject = Object.create(Sections);
 sectionsObject.init();
 
 //Render out app
-render(React.createElement(App,{
-    sectionsObject,
-    siteURL: 'http://felix.e1.siteloft.com',
-    onLoad: hideLoader
-}),document.getElementById('app'));
+render(
+    <App
+        sectionsObject={sectionsObject}
+        siteURL="http://felix.e1.siteloft.com"
+        onLoad={hideLoader}
+    />
+,document.getElementById('app'));

@@ -4,11 +4,10 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
-var ImageSection = React.createClass({
+export default class ImageSection extends React.Component {
 
-    propTypes:{
+    static propTypes = {
         //standard
         index: React.PropTypes.number,
         selectedObjectKey: React.PropTypes.number,
@@ -20,11 +19,11 @@ var ImageSection = React.createClass({
 
         //functions
         onSectionClick: React.PropTypes.func
-    },
+    };
 
-    handleClick(){
+    handleClick = () => {
         this.props.onSectionClick(this.props.index);
-    },
+    };
 
     render(){
 
@@ -54,7 +53,4 @@ var ImageSection = React.createClass({
             </section>
         );
     }
-});
-
-
-export {ImageSection};
+}

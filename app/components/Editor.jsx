@@ -4,13 +4,12 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
-import {SectionSelect} from './editorOptions/SectionSelect.jsx'
-import {ListOption} from './editorOptions/ListOption.jsx'
+import SectionSelect from './editorOptions/SectionSelect.jsx'
+import ListOption from './editorOptions/ListOption.jsx'
 
-var Editor = React.createClass({
+export default class Editor extends React.Component {
 
-    propTypes:{
+    static propTypes = {
         selectedObjectKey: React.PropTypes.number,
         sectionsObject: React.PropTypes.array,
 
@@ -24,34 +23,34 @@ var Editor = React.createClass({
         onListInnerListInputChange: React.PropTypes.func,
         onListRemoveListClick: React.PropTypes.func,
         onListAddListClick: React.PropTypes.func
-    },
+    };
 
-    handleChange(event){
+    handleChange = (event) => {
         this.props.onEdit(this.props.selectedObjectKey, event)
-    },
+    };
 
-    handlePositionClick(event,right){
+    handlePositionClick = (event,right) => {
         if(right){
             this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey+1);
         } else {
             this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey-1);
         }
 
-    },
+    };
 
-    handleAddClick(){
+    handleAddClick = () => {
         this.props.onEditorAddClick();
-    },
+    };
 
-    handleDeleteClick(){
+    handleDeleteClick = () => {
         this.props.onEditorDeleteClick(this.props.selectedObjectKey);
-    },
+    };
 
     /**
      * for each property on the selected section create a label and input
      * @returns {Array}
      */
-    renderOptions(){
+    renderOptions = () => {
 
         var editorContentArray = [];
         var key = 0;
@@ -90,7 +89,7 @@ var Editor = React.createClass({
         }
 
         return editorContentArray;
-    },
+    };
 
     /**
      * render out the editor menu with all options and buttons
@@ -124,10 +123,6 @@ var Editor = React.createClass({
             </div>
         );
 
-    },
-
-
-});
-
-export {Editor}
+    }
+}
 

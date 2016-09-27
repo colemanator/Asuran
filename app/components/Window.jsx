@@ -4,11 +4,10 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
-var Window = React.createClass({
+export default class Window extends React.Component {
 
-    propTypes:{
+    static propTypes = {
         display: React.PropTypes.string,
         contentType: React.PropTypes.string,
         content: React.PropTypes.string,
@@ -17,28 +16,28 @@ var Window = React.createClass({
         onCloseClick: React.PropTypes.func,
         onImportClick: React.PropTypes.func,
         onImportTextAreaChange: React.PropTypes.func
-    },
+    };
 
-    handleCloseClick(){
+    handleCloseClick = () => {
         this.props.onCloseClick()
-    },
+    };
 
-    handleImportClick(){
+    handleImportClick = () => {
         this.props.onImportClick();
-    },
+    };
 
     /**
      * copy the current value of the text area to click board
      */
-    handleCopyClick(){
+    handleCopyClick = () => {
         document.getElementById('export-text-area').select();
         document.execCommand('copy');
         this.props.onCloseClick();
-    },
+    };
 
-    handleImportTextAreaChange(event){
+    handleImportTextAreaChange = (event) => {
         this.props.onImportTextAreaChange(event.target.value);
-    },
+    };
 
     /**
      * not sure if this should be broken into different components
@@ -96,7 +95,7 @@ var Window = React.createClass({
                 </div>
             );
         }
-    },
+    }
 
     /**
      * render out the window
@@ -114,7 +113,5 @@ var Window = React.createClass({
                 </div>
             </div>
         );
-    },
-});
-
-export {Window};
+    }
+}

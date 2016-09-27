@@ -4,29 +4,31 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
-import  {Editor} from './Editor.jsx'
-import {Grid} from './Grid.jsx';
-import {HeaderContainer} from './HeaderContainer.jsx'
-import {Window} from './Window.jsx';
+import Editor from './Editor.jsx'
+import Grid from './Grid.jsx';
+import HeaderContainer from './HeaderContainer.jsx'
+import Window from './Window.jsx';
 
 /**
  * App is the entry point react component and the state holder for the application, it handles all changes by calling
  * methods on the sections object which are delegated to the sectionsModel.
  */
-var App = React.createClass({
+export default class App extends React.Component {
 
-    propTypes:{
+    static propTypes = {
         sectionsObject: React.PropTypes.object,
         siteURL: React.PropTypes.string,
         onLoad: React.PropTypes.func
-    },
+    };
+
 
     /**
      * Only Component with state holds state for all components
      */
-    getInitialState(){
-        return {
+    constructor(props) {
+        super(props);
+
+        this.state = {
             sectionsObject: this.props.sectionsObject,
             selectedObjectKey: 0,
             siteURL: this.props.siteURL,
@@ -38,11 +40,11 @@ var App = React.createClass({
             },
             tempJSONString: ''
         }
-    },
+    }
 
     componentDidMount(){
         this.props.onLoad();
-    },
+    }
 
     /**
      * This will handle an edit make to one of the sections property, it will update the state
@@ -50,55 +52,55 @@ var App = React.createClass({
      * @param index {int} the index of the section in the array
      * @param event
      */
-    handleEditorEdit(index, event){
+    handleEditorEdit = (index, event) => {
         this.state.sectionsObject.sections[index][event.target.name] = event.target.value;
         this.setState({sectionsObject:  this.state.sectionsObject});
-    },
+    };
 
     /**
      * When a section is clicked it will be made the selected object
      * @param index {int}the index of the section in the array
      */
-    handleSectionClick(index){
+    handleSectionClick = (index) => {
         this.setState({selectedObjectKey: index})
-    },
+    };
 
     /**
      * Moves the selected section up or down in the array of components
      * @param currentIndex
      * @param newIndex
      */
-    handleEditorPositionClick(currentIndex, newIndex){
+    handleEditorPositionClick = (currentIndex, newIndex) => {
         var success = this.state.sectionsObject.move(currentIndex, newIndex);
         if(success) {
             this.setState({sectionsObject: this.state.sectionsObject, selectedObjectKey: newIndex})
         }
-    },
+    };
 
     /**
      * Handles adding a new section
      */
-    handleEditorAddClick(){
+    handleEditorAddClick = () => {
         this.state.sectionsObject.add();
         this.setState({sectionsObject: this.state.sectionsObject});
-    },
+    };
 
     /**
      * handles changing a sections type
      * @param event
      */
-    handleEditorSelectChange(event){
+    handleEditorSelectChange = (event) => {
         var success = this.state.sectionsObject.set(this.state.selectedObjectKey ,event.target.value);
         if(success) {
             this.setState({sectionsObject: this.state.sectionsObject});
         }
-    },
+    };
 
     /**
      * Handles deleting a section
      * @param index {int} index of the section in the array
      */
-    handleEditorDeleteClick(index){
+    handleEditorDeleteClick = (index) => {
         this.state.sectionsObject.delete(index);
         if(this.state.sectionsObject.sections.length <= index){
             this.state.selectedObjectKey -= 1;
@@ -107,32 +109,32 @@ var App = React.createClass({
             this.setState({sectionsObject: this.state.sectionsObject});
         }
 
-    },
+    };
 
     /**
      * handles changes to the site URL
      * @param value {string} new value
      */
-    handleHeaderSiteURLChange(value){
+    handleHeaderSiteURLChange = (value) =>{
         this.setState({siteURL: value});
-    },
+    };
 
     /**
      * When import is clicked display the import window
      */
-    handleHeaderImportClick(){
+    handleHeaderImportClick = () => {
         this.setState({windowState: {
             display: "active",
             contentType: "import",
             content: "Enter JSON string here",
             title: "Import"
         }});
-    },
+    };
 
     /**
      * When export is click display the exprort window
      */
-    handleHeaderExportClick(){
+    handleHeaderExportClick = () => {
         var JSONString = this.state.sectionsObject.export();
         this.setState({windowState: {
             display: "active",
@@ -140,21 +142,21 @@ var App = React.createClass({
             content: JSONString,
             title: "Export"
         }});
-    },
+    };
 
     /**
      * handle the winow close button click, close the window
      */
-    handleWindowCloseClick(){
+    handleWindowCloseClick = () => {
         this.state.windowState.display = '';
         this.setState({windowState: this.state.windowState});
-    },
+    };
 
     /**
      * handle Import, when the import window's import button is clicked
      * use the sectionsObject delegate to attempt to import the JSOn string
      */
-    handleWindowImportClick(){
+    handleWindowImportClick = () => {
         if(this.state.tempJSONString != ''){
             //attempt to import
             var status = this.state.sectionsObject.import(this.state.tempJSONString);
@@ -180,13 +182,13 @@ var App = React.createClass({
                 });
             }
         }
-    },
+    };
 
     /**
      * Update the state
      * @param value
      */
-    handleWindowImportTextAreaChange(value){
+    handleWindowImportTextAreaChange = (value) => {
         this.state.tempJSONString = value;
         this.setState({windowState: {
                 display: "active",
@@ -194,31 +196,31 @@ var App = React.createClass({
                 content: value,
                 title: "Import"
         }});
-    },
+    };
 
-    handleEditorInnerListInputChange(index, name, value){
+    handleEditorInnerListInputChange = (index, name, value) => {
         var key = this.state.selectedObjectKey;
         //update value of inner list
         this.state.sectionsObject.sections[key].list[index][name] = value;
         this.setState({sectionsObject: this.state.sectionsObject});
-    },
+    };
 
-    handleRemoveListClick(index){
+    handleRemoveListClick = (index) => {
         var key = this.state.selectedObjectKey;
         //remove inner list
         this.state.sectionsObject.sections[key].list.splice(index,1);
         this.setState({sectionsObject: this.state.sectionsObject});
 
-    },
+    };
 
-    handleAddListClick(){
+    handleAddListClick = () => {
         var key = this.state.selectedObjectKey;
         this.state.sectionsObject.sections[key].list.push({
             text: '',
             href: ''
         });
         this.setState({sectionsObject: this.state.sectionsObject});
-    },
+    };
 
     /**
      * Render all components and thier children
@@ -264,6 +266,4 @@ var App = React.createClass({
         );
     }
 
-});
-
-export {App};
+}

@@ -4,11 +4,10 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
-var ButtonLinkSection = React.createClass({
+export default class ButtonLinkSection extends React.Component {
 
-    propTypes: {
+    static propTypes = {
         //standard
         index: React.PropTypes.number,
         selectedObjectKey: React.PropTypes.number,
@@ -26,11 +25,11 @@ var ButtonLinkSection = React.createClass({
 
         //functions
         onSectionClick: React.PropTypes.func,
-    },
+    };
 
-    handleClick(){
+    handleClick = () => {
         this.props.onSectionClick(this.props.index);
-    },
+    };
 
     render(){
 
@@ -72,6 +71,4 @@ var ButtonLinkSection = React.createClass({
             </section>
         );
     }
-});
-
-export {ButtonLinkSection};
+}
