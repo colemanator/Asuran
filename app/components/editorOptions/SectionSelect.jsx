@@ -4,19 +4,18 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
-var SectionSelect = React.createClass({
+export default class SectionSelect extends React.Component {
 
-    PropTypes:{
+    static PropTypes = {
         sectionsObject: React.PropTypes.object,
         selectedObjectKey: React.PropTypes.number,
         onEditorSelectChange: React.PropTypes.func
-    },
+    };
 
-    handleSelectChange(event){
+    handleSelectChange = (event) => {
         this.props.onEditorSelectChange(event);
-    },
+    };
 
     /**
      * render out the select input
@@ -38,7 +37,5 @@ var SectionSelect = React.createClass({
             </div>
         );
 
-    },
-});
-
-export {SectionSelect};
+    }
+}

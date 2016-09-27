@@ -4,30 +4,29 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
-var HeaderContainer = React.createClass({
+export default class HeaderContainer extends React.Component {
 
-    propTypes:{
+    static propTypes = {
         siteURL: React.PropTypes.string,
 
         //functions
         onSiteURLChange: React.PropTypes.func,
         onImportClick: React.PropTypes.func,
         onExportClick: React.PropTypes.func
-    },
+    };
 
-    handleSiteURLChange(event){
+    handleSiteURLChange = (event) => {
         this.props.onSiteURLChange(event.target.value);
-    },
+    };
 
-    handleImportClick(){
+    handleImportClick = () => {
         this.props.onImportClick();
-    },
+    };
 
-    handleExportClick(){
+    handleExportClick = () => {
         this.props.onExportClick();
-    },
+    };
 
     /**
      * render out the header
@@ -51,6 +50,6 @@ var HeaderContainer = React.createClass({
     }
 
 
-});
+}
 
 export {HeaderContainer};

@@ -4,11 +4,10 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
-var AgencyMapSection = React.createClass({
+export default class AgencyMapSection extends React.Component {
 
-    propTypes:{
+    static propTypes = {
         //standard
         index: React.PropTypes.number,
         selectedObjectKey: React.PropTypes.number,
@@ -19,7 +18,7 @@ var AgencyMapSection = React.createClass({
 
         //functions
         onSectionClick: React.PropTypes.func
-    },
+    };
 
     /**
      * When Component has mounted and google is ready generate the map
@@ -29,7 +28,7 @@ var AgencyMapSection = React.createClass({
         this.createMap();
         this.addMarker();
         this.fitMapToMarkers();
-    },
+    }
 
     /**
      * Add a marker to the map with custom icon (marker is just dummy data)
@@ -56,7 +55,7 @@ var AgencyMapSection = React.createClass({
             map: this.map,
             icon: iconOptions
         }));
-    },
+    }
 
 
     /**
@@ -73,7 +72,7 @@ var AgencyMapSection = React.createClass({
         google.maps.event.addDomListener(window, 'resize', function () {
             this.fitMapToMarkers();
         }.bind(this));
-    },
+    }
 
     /**
      * fit map to the bounds of the marker
@@ -104,11 +103,11 @@ var AgencyMapSection = React.createClass({
 
             this.map.fitBounds(bounds);
         }
-    },
+    }
 
-    handleClick(){
+    handleClick = () => {
         this.props.onSectionClick(this.props.index);
-    },
+    };
 
     render(){
 
@@ -133,6 +132,4 @@ var AgencyMapSection = React.createClass({
         );
     }
 
-});
-
-export {AgencyMapSection};
+}

@@ -6,9 +6,9 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-var LinkListSection = React.createClass({
+export default class LinkListSection extends React.Component {
 
-    propTypes:{
+    static propTypes = {
         //standard
         index: React.PropTypes.number,
         selectedObjectKey: React.PropTypes.number,
@@ -24,11 +24,11 @@ var LinkListSection = React.createClass({
 
         //functions
         onSectionClick: React.PropTypes.func
-    },
+    };
 
-    handleClick(){
+    handleClick = () => {
         this.props.onSectionClick(this.props.index);
-    },
+    };
 
     /**
      * Title for link list seciton
@@ -46,7 +46,7 @@ var LinkListSection = React.createClass({
                 </div>
             );
         }
-    },
+    }
 
     /**
      * Generate an array of links from the list prop
@@ -71,7 +71,7 @@ var LinkListSection = React.createClass({
             }
             return listArray;
         }
-    },
+    }
 
     render(){
 
@@ -106,7 +106,4 @@ var LinkListSection = React.createClass({
             </section>
         );
     }
-
-});
-
-export {LinkListSection};
+}

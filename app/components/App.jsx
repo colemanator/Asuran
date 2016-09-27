@@ -4,10 +4,10 @@
 'use strict';
 
 import React from 'react';
-import  {Editor} from './Editor.jsx'
-import {Grid} from './Grid.jsx';
-import {HeaderContainer} from './HeaderContainer.jsx'
-import {Window} from './Window.jsx';
+import Editor from './Editor.jsx'
+import Grid from './Grid.jsx';
+import HeaderContainer from './HeaderContainer.jsx'
+import Window from './Window.jsx';
 
 /**
  * App is the entry point react component and the state holder for the application, it handles all changes by calling

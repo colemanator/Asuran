@@ -4,14 +4,13 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
 /**
  * Section for Agency details
  */
-var AgencyDetailsSection = React.createClass({
+export default class AgencyDetailsSection extends React.Component {
 
-    propTypes: {
+    static propTypes = {
         //standard
         index: React.PropTypes.number,
         selectedObjectKey: React.PropTypes.number,
@@ -24,11 +23,11 @@ var AgencyDetailsSection = React.createClass({
         //functions
         onSectionClick: React.PropTypes.func
 
-    },
+    };
 
-    handleClick(){
+    handleClick = () => {
         this.props.onSectionClick(this.props.index);
-    },
+    };
 
     render(){
 
@@ -60,6 +59,4 @@ var AgencyDetailsSection = React.createClass({
             </section>
         );
     }
-});
-
-export {AgencyDetailsSection};
+}

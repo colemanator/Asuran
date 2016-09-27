@@ -4,32 +4,30 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
 //sections
-import {AgencyDetailsSection} from './sections/AgencyDetailsSection.jsx';
-import {ButtonLinkSection} from './sections/ButtonLinkSection.jsx';
-import {EmptySection} from './sections/EmptySection.jsx';
-import {ImageSection} from './sections/ImageSection.jsx';
-import {ImageTextSection} from './sections/ImageTextSection.jsx';
-import {LinkListSection} from './sections/LinkListSection.jsx';
-import {AgencyMapSection} from './sections/AgencyMapSection.jsx';
+import AgencyDetailsSection from './sections/AgencyDetailsSection.jsx';
+import AgencyMapSection from './sections/AgencyMapSection.jsx';
+import ButtonLinkSection from './sections/ButtonLinkSection.jsx';
+import EmptySection from './sections/EmptySection.jsx';
+import ImageSection from './sections/ImageSection.jsx';
+import ImageTextSection from './sections/ImageTextSection.jsx';
+import LinkListSection from './sections/LinkListSection.jsx';
 
 /**
  * Grid component responsible for generating the sections based on the sections Object provided
  * @type {*|Function}
  */
-var Grid = React.createClass({
+export default class Grid extends React.Component {
     
-    propTypes:{
+    static propTypes = {
         sections: React.PropTypes.array,
         selectedObjectKey: React.PropTypes.number,
         siteURL: React.PropTypes.string,
 
         //functions
         onSectionClick: React.PropTypes.func
-
-    },
+    };
 
 
     /**
@@ -43,18 +41,18 @@ var Grid = React.createClass({
                     {this.renderSections()}
                 </div>
         );
-    },
+    }
 
     /**
      * create an array of components for each section in the array
      * @returns {Array} array of components
      */
-    renderSections(){
+    renderSections() {
 
         var sectionsArray = [];
 
-        for(let i = 0; i < this.props.sections.length; i++ ){
-            switch(this.props.sections[i].id) {
+        for (let i = 0; i < this.props.sections.length; i++) {
+            switch (this.props.sections[i].id) {
                 case 'agency-details':
                     sectionsArray.push(
                         <AgencyDetailsSection
@@ -176,7 +174,4 @@ var Grid = React.createClass({
 
         return sectionsArray;
     }
-
-});
-
-export {Grid};
+}

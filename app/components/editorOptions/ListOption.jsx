@@ -4,11 +4,10 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
-var ListOption = React.createClass({
+export default class ListOption extends React.Component {
 
-    propTypes: {
+    static propTypes = {
         sectionOptionList: React.PropTypes.array,
 
         //functions
@@ -16,20 +15,20 @@ var ListOption = React.createClass({
         onRemoveListClick: React.PropTypes.func,
         onAddListClick: React.PropTypes.func
 
-    },
+    };
 
-    HandleInnerListInputChange(args, event){
+    HandleInnerListInputChange = (args, event) => {
         var value = event.target.value;
         this.props.onInnerListInputChange(args[0], args[1], value);
-    },
+    };
 
-    handleRemoveInnerListClick(index){
+    handleRemoveInnerListClick = (index) => {
         this.props.onRemoveListClick(index);
-    },
+    };
 
-    handleAddListClick(){
+    handleAddListClick = () => {
         this.props.onAddListClick();
-    },
+    };
 
     /**
      * Used to generate the inner list which contains the inputs for each linkList Item,
@@ -51,7 +50,7 @@ var ListOption = React.createClass({
         }
 
         return innerList;
-    },
+    }
 
     /**
      * Create the top level list, for each link list item then call innerList to generate the inner list of inputs
@@ -79,7 +78,7 @@ var ListOption = React.createClass({
 
         return list;
 
-    },
+    }
 
     render(){
 
@@ -93,6 +92,4 @@ var ListOption = React.createClass({
         );
     }
 
-});
-
-export {ListOption};
+}

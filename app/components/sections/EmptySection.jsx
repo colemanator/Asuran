@@ -4,22 +4,21 @@
 'use strict';
 
 import React from 'react';
-import {render} from 'react-dom';
 
-var EmptySection = React.createClass({
+export default class EmptySection extends React.Component {
 
-    propTypes:{
+    static propTypes = {
         //standard
         index: React.PropTypes.number,
         selectedObjectKey: React.PropTypes.number,
 
         //functions
         onSectionClick: React.PropTypes.func
-    },
+    };
 
-    handleClick(){
+    handleClick = () => {
         this.props.onSectionClick(this.props.index);
-    },
+    };
 
     render(){
 
@@ -37,6 +36,4 @@ var EmptySection = React.createClass({
             </section>
         );
     }
-});
-
-export {EmptySection};
+}
