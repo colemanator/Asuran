@@ -9,6 +9,9 @@ import React from 'react';
 import {render} from 'react-dom';
 import App from './components/App.jsx'
 import {Sections} from '../app/sectionsDelegate';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducers from './redux/rootReducer'
 
 /**
  * Hide the loader, called on App's componentDidMount call
@@ -22,6 +25,9 @@ var sectionsObject = Object.create(Sections);
 
 //initialise with defaults
 sectionsObject.init();
+
+const store = createStore(reducers,window.devToolsExtension && window.devToolsExtension());
+debugger;
 
 //Render out app
 render(
