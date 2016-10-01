@@ -27,7 +27,6 @@ var sectionsObject = Object.create(Sections);
 sectionsObject.init();
 
 const store = createStore(reducers,window.devToolsExtension && window.devToolsExtension());
-debugger;
 
 //Render out app
 render(

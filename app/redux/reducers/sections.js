@@ -3,18 +3,23 @@
  */
 'use strict';
 
-import {Map, List} from 'immutable';
+import {List} from 'immutable';
 
-const initial = List([Map({id: 'empty'})]);
+const initial = List([{id: 'empty'}]);
 
 export default function sections (state = initial, action){
     switch (action.type){
-        case 'ADD_SECTION':
-            return state.push(Map({...action.section}));
+        case 'SET_SECTION':
+            return state.set(action.index,{...action.section});
         case 'UPDATE_SECTION':
-            return state.update(action.id,state.get(action.id).update(action.key,action.value));
+            return state.update(action.index,state.get(action.index)[action.key] = action.value);
         case 'DELETE_SECTION':
-            return state.delete(action.id);
+            return state.delete(action.index);
+        case 'ADD_SECTION':
+            return state.push({id: 'empty'});
+        case 'SHIFT_SECTION':
+            let tempSection = state.get(action.index);
+            return state.delete(action.index).insert(action.newIndex,tempSection);
         default:
             return state;
     }
