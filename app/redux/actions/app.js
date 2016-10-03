@@ -3,8 +3,13 @@
  */
 'use strict';
 
-export const SET_SITE_URL = 'SET_SITE_URL'
+export const SET_SITE_URL = 'SET_SITE_URL';
+export const SET_WINDOW = 'SET_WINDOW';
 
-export function setSiteURL(URL){
-    return {type: SET_SITE_URL, URL}
+export function setSiteURL(url){
+    return {type: SET_SITE_URL, url}
+}
+
+export function setWindow(window){
+    return {type: SET_WINDOW, window}
 }

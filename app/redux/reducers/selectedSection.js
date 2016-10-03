@@ -3,12 +3,10 @@
  */
 'use strict';
 
-import {List, Map} from 'immutable';
-
-export default function setSelectedSection (state = 0, action){
+export default function selectedSection (state = 0, action){
     switch (action.type){
         case 'SET_SLECTED_SECTION':
-            return action.id;
+            return action.index;
         default:
             return state;
     }

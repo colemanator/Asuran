@@ -30,9 +30,11 @@ const store = createStore(reducers,window.devToolsExtension && window.devToolsEx
 
 //Render out app
 render(
-    <App
-        sectionsObject={sectionsObject}
-        siteURL="http://felix.e1.siteloft.com"
-        onLoad={hideLoader}
-    />
-,document.getElementById('app'));
+    <Provider store={store}>
+        <App
+            sectionsObject={sectionsObject}
+            siteURL="http://felix.e1.siteloft.com"
+            onLoad={hideLoader}
+        />
+    </Provider>
+,document.getElementById('root'));

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-export default function setSiteURL(state = 'http://felix.e1.siteloft.com', action) {
+export default function siteURL(state = 'http://felix.e1.siteloft.com', action) {
     switch (action.type){
         case 'SET_SITE_URL':
             return action.url;

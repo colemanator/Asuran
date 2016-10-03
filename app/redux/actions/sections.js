@@ -12,8 +12,8 @@ export const ADD_SECTION = 'ADD_SECTION';
 export const SHIFT_SECTION = 'SHIFT_SECTION';
 
 
-export function setSelectedSection(id){
-    return {type: SET_SELECTED_SECTION, id}
+export function setSelectedSection(index){
+    return {type: SET_SELECTED_SECTION, index}
 }
 
 export function setSection(index, section) {

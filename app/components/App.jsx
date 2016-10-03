@@ -3,17 +3,20 @@
  */
 'use strict';
 
-import React from 'react';
+import React from 'react'
+import { connect } from 'react-redux'
 import Editor from './Editor.jsx'
-import Grid from './Grid.jsx';
+import Grid from './Grid.jsx'
 import HeaderContainer from './HeaderContainer.jsx'
-import Window from './Window.jsx';
+import Window from './Window.jsx'
+import {setSiteURL, setWindow} from '../redux/actions/app'
+import {setSection, setSelectedSection, shitSection, updateSection, deleteSection, addSection} from '../redux/actions/sections'
 
 /**
  * App is the entry point react component and the state holder for the application, it handles all changes by calling
  * methods on the sections object which are delegated to the sectionsModel.
  */
-export default class App extends React.Component {
+class App extends React.Component {
 
     static propTypes = {
         sectionsObject: React.PropTypes.object,
@@ -227,11 +230,14 @@ export default class App extends React.Component {
      * @returns {XML}
      */
     render(){
+
+        debugger;
         return (
             <div className="app">
                 <HeaderContainer
-                    siteURL={this.state.siteURL}
-                    onSiteURLChange={this.handleHeaderSiteURLChange}
+                    siteURL={this.props.siteURL}
+                    onSiteURLChange={this.props.onSiteURLChange}
+                    //todo window handles still need to be refactored
                     onExportClick={this.handleHeaderExportClick}
                     onImportClick={this.handleHeaderImportClick}
                 />
@@ -265,5 +271,45 @@ export default class App extends React.Component {
             </div>
         );
     }
-
 }
+
+const mapStateToProps = (state) => {
+    return {
+        defaultSections: state.defaultSections,
+        siteURL: state.siteURL,
+        selectedSection: state.selectedSection,
+        sections: state.sections
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSectionClick: (index) => {
+            dispatch(setSelectedSection(index))
+        },
+        onChangeSection: (index, key, value) => {
+            dispatch(updateSection({index, key, value}))
+        },
+        onShiftSectionClick: (index, newIndex) => {
+            dispatch(shitSection(index, newIndex))
+        },
+        onAddSectionClick: () => {
+            dispatch(addSection())
+        },
+        onSelectSectionChange: (index, section) => {
+            dispatch(setSection(index, section))
+        },
+        onDeleteSectionClick: (index) => {
+            dispatch(deleteSection(index))
+        },
+        onSiteURLChange: (url) => {
+            dispatch(setSiteURL(url))
+        }
+        //todo add window handlers
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(App);
