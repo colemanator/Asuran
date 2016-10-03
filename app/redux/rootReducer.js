@@ -7,15 +7,15 @@ import { combineReducers } from 'redux'
 
 //reducers
 import defaultSections from './reducers/defaultSections';
-import SiteURL from './reducers/SiteURL';
-import SelectedSection from './reducers/SelectedSection';
+import siteURL from './reducers/SiteURL';
+import selectedSection from './reducers/SelectedSection';
 import sections from './reducers/sections';
 import window from './reducers/window'
 
 const reducers = combineReducers({
     defaultSections,
-    SiteURL,
-    SelectedSection,
+    siteURL,
+    selectedSection,
     sections,
     window
 });

@@ -33,7 +33,6 @@ render(
     <Provider store={store}>
         <App
             sectionsObject={sectionsObject}
-            siteURL="http://felix.e1.siteloft.com"
             onLoad={hideLoader}
         />
     </Provider>

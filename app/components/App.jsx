@@ -231,7 +231,6 @@ class App extends React.Component {
      */
     render(){
 
-        debugger;
         return (
             <div className="app">
                 <HeaderContainer
@@ -253,10 +252,10 @@ class App extends React.Component {
                             onListRemoveListClick={this.handleRemoveListClick}
                             onListInnerListInputChange={this.handleEditorInnerListInputChange}
                     />
-                    <Grid sections={this.state.sectionsObject.sections}
-                          selectedObjectKey={this.state.selectedObjectKey}
-                          onSectionClick={this.handleSectionClick}
-                          siteURL={this.state.siteURL}
+                    <Grid sections={this.props.sections}
+                          selectedObjectKey={this.props.selectedSection}
+                          onSectionClick={this.props.onSectionClick}
+                          siteURL={this.props.siteURL}
                     />
                 </main>
                 <Window
@@ -278,7 +277,7 @@ const mapStateToProps = (state) => {
         defaultSections: state.defaultSections,
         siteURL: state.siteURL,
         selectedSection: state.selectedSection,
-        sections: state.sections
+        sections: state.sections.toArray()
     };
 };
 

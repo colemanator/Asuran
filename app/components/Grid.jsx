@@ -19,7 +19,7 @@ import LinkListSection from './sections/LinkListSection.jsx';
  * @type {*|Function}
  */
 export default class Grid extends React.Component {
-    
+
     static propTypes = {
         sections: React.PropTypes.array,
         selectedObjectKey: React.PropTypes.number,
@@ -34,12 +34,12 @@ export default class Grid extends React.Component {
      * render the grid of sections
      * @returns {XML}
      */
-    render(){
+    render() {
         return (
-         
-                <div className="home-multisection-widget row">
-                    {this.renderSections()}
-                </div>
+
+            <div className="home-multisection-widget row">
+                {this.renderSections()}
+            </div>
         );
     }
 
@@ -49,129 +49,81 @@ export default class Grid extends React.Component {
      */
     renderSections() {
 
-        var sectionsArray = [];
-
-        for (let i = 0; i < this.props.sections.length; i++) {
-            switch (this.props.sections[i].id) {
+        return this.props.sections.map((section, index) => {
+            switch (section.id) {
                 case 'agency-details':
-                    sectionsArray.push(
+                    return (
                         <AgencyDetailsSection
-                            key={i}
-                            index={i}
+                            key={index}
+                            index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
                             onSectionClick={this.props.onSectionClick}
-                            id={this.props.sections[i].id}
-                            size={this.props.sections[i].size}
-                            colour={this.props.sections[i].colour}
+                            {...section}
                         />
                     );
-                    break;
                 case 'agency-map':
-                    sectionsArray.push(
+                    return (
                         <AgencyMapSection
-                            key={i}
-                            index={i}
+                            key={index}
+                            index={idex}
                             selectedObjectKey={this.props.selectedObjectKey}
                             onSectionClick={this.props.onSectionClick}
-                            size={this.props.sections[i].size}
-                            noDefault={this.props.sections[i].noDefault}
+                            {...section}
                         />
                     );
-                    break;
                 case 'button-link':
-                    sectionsArray.push(
+                    return (
                         <ButtonLinkSection
-                            key={i}
-                            index={i}
+                            key={index}
+                            index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
-                            id={this.props.sections[i].id}
-                            size={this.props.sections[i].size}
-                            bgImageUrl={this.props.sections[i].bgImageUrl}
-                            caption={this.props.sections[i].caption}
-                            href={this.props.sections[i].href}
-                            target={this.props.sections[i].target}
-                            buttonText={this.props.sections[i].buttonText}
-                            transparency={this.props.sections[i].transparency}
+                            onSectionClick={this.props.onSectionClick}
                             siteURL={this.props.siteURL}
-                            onSectionClick={this.props.onSectionClick}
+                            {...section}
                         />
                     );
-                    break;
                 case 'image':
-                    sectionsArray.push(
+                    return (
                         <ImageSection
-                            key={i}
-                            index={i}
+                            key={index}
+                            index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
-                            size={this.props.sections[i].size}
-                            bgImageURL={this.props.sections[i].bgImageUrl}
-                            siteURL={this.props.sections[i].siteURL}
                             onSectionClick={this.props.onSectionClick}
+                            siteURL={this.props.sections[i].siteURL}
+                            {...section}
                         />
                     );
-                    break;
                 case 'image-text':
-                    sectionsArray.push(
+                    return (
                         <ImageTextSection
-                            key={i}
-                            index={i}
+                            key={index}
+                            index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
-                            size={this.props.sections[i].size}
-                            bgImageURL={this.props.sections[i].bgImageUrl}
-                            caption={this.props.sections[i].caption}
-                            transparency={this.props.sections[i].transparency}
                             siteURL={this.props.sections[i].siteURL}
                             onSectionClick={this.props.onSectionClick}
+                            {...section}
                         />
                     );
-                    break;
                 case 'link-list':
-                    sectionsArray.push(
+                    return (
                         <LinkListSection
-                            key={i}
-                            index={i}
+                            key={index}
+                            index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
-                            size={this.props.sections[i].size}
-                            colors={this.props.sections[i].colors}
-                            linkColor={this.props.sections[i]['link_color']}
-                            highlightColor={this.props.sections[i]['heighlight-color']}
-                            title={this.props.sections[i].title}
-                            list={this.props.sections[i].list}
                             onSectionClick={this.props.onSectionClick}
-                        />);
-                    break;
-                case 'listings-slider':
-                    sectionsArray.push(<listingsSliderSection/>);
-                    break;
-                case 'single-Listing':
-                    sectionsArray.push(<singleListingSection/>);
-                    break;
-                case 'staff-locator':
-                    sectionsArray.push(<staffLocatorSection/>);
-                    break;
-                case 'testimonials':
-                    sectionsArray.push(<testimonialsSection/>);
-                    break;
-                case 'title-text':
-                    sectionsArray.push(<titleTextSection/>);
-                    break;
-                case 'video-link':
-                    sectionsArray.push(<videoLinkSection/>);
-                    break;
+                            {...section}
+                        />
+                    );
                 default:
-                    sectionsArray.push(
+                    return (
                         <EmptySection
-                            key={i}
-                            index={i}
+                            key={index}
+                            index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
                             onSectionClick={this.props.onSectionClick}
                         />
                     );
-                    break;
             }
-
-        }
-
-        return sectionsArray;
+        });
     }
 }
