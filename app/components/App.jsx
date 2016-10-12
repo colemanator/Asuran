@@ -226,7 +226,7 @@ class App extends React.Component {
     };
 
     /**
-     * Render all components and thier children
+     * Render all components and their children
      * @returns {XML}
      */
     render(){

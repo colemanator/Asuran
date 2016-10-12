@@ -83,11 +83,10 @@ export default class Editor extends React.Component {
                     </div>
                 );
             }else {
-
                 editorContentArray.push(
                     <div key={key}>
                         <h4>{propertyName}</h4>
-                        <input type="text" defaultValue={selectedObject[propertyName]} name={propertyName} onChange={this.handleChange}/>
+                        <input type="text" value={selectedObject[propertyName]} name={propertyName} onChange={this.handleChange}/>
                     </div>
                 );
             }
