@@ -10,7 +10,7 @@ import Grid from './Grid.jsx'
 import HeaderContainer from './HeaderContainer.jsx'
 import Window from './Window.jsx'
 import {setSiteURL, setWindow} from '../redux/actions/app'
-import {setSection, setSelectedSection, shitSection, updateSection, deleteSection, addSection} from '../redux/actions/sections'
+import {setSection, setSelectedSectionIndex, shitSection, updateSection, deleteSection, addSection} from '../redux/actions/sections'
 
 /**
  * App is the entry point react component and the state holder for the application, it handles all changes by calling
@@ -241,20 +241,24 @@ class App extends React.Component {
                     onImportClick={this.handleHeaderImportClick}
                 />
                 <main>
-                    <Editor selectedObjectKey={this.state.selectedObjectKey}
-                            onEditorPositionClick={this.handleEditorPositionClick}
-                            sectionsObject={this.state.sectionsObject.sections}
-                            onEdit={this.handleEditorEdit}
-                            onEditorAddClick={this.handleEditorAddClick}
-                            onEditorSelectChange={this.handleEditorSelectChange}
-                            onEditorDeleteClick={this.handleEditorDeleteClick}
+                    <Editor selectedSectionIndex={this.props.selectedSectionIndex}
+                            onShiftSectionClick={this.props.onShiftSectionClick}
+                            sections={this.props.sections}
+                            defaultSections={this.props.defaultSections}
+                            onEdit={this.props.onChangeSection}
+                            onEditorAddClick={this.props.onAddSectionClick}
+                            onEditorSelectChange={this.props.onSelectSectionChange}
+                            onEditorDeleteClick={this.props.onDeleteSectionClick}
+                            onSetSelectedSectionIndex={this.props.onSetSelectedSectionIndex}
+
+                            //todo this functionality will need to be refactored
                             onListAddListClick={this.handleAddListClick}
                             onListRemoveListClick={this.handleRemoveListClick}
                             onListInnerListInputChange={this.handleEditorInnerListInputChange}
                     />
                     <Grid sections={this.props.sections}
-                          selectedObjectKey={this.props.selectedSection}
-                          onSectionClick={this.props.onSectionClick}
+                          selectedObjectKey={this.props.selectedSectionIndex}
+                          onSectionClick={this.props.onSetSelectedSectionIndex}
                           siteURL={this.props.siteURL}
                     />
                 </main>
@@ -274,20 +278,20 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        sections: state.sections.toArray().map((section) => {return section.toObject()}),
         defaultSections: state.defaultSections,
         siteURL: state.siteURL,
-        selectedSection: state.selectedSection,
-        sections: state.sections.toArray()
+        selectedSectionIndex: state.selectedSectionIndex
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSectionClick: (index) => {
-            dispatch(setSelectedSection(index))
+        onSetSelectedSectionIndex: (index) => {
+            dispatch(setSelectedSectionIndex(index))
         },
         onChangeSection: (index, key, value) => {
-            dispatch(updateSection({index, key, value}))
+            dispatch(updateSection(index, key, value))
         },
         onShiftSectionClick: (index, newIndex) => {
             dispatch(shitSection(index, newIndex))

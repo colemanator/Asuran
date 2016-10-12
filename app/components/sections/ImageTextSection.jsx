@@ -16,7 +16,7 @@ export default class ImageTextSection extends React.Component {
 
         //component specific
         size: React.PropTypes.string,
-        bgImageURL: React.PropTypes.string,
+        bgImageUrl: React.PropTypes.string,
         siteURL: React.PropTypes.string,
 
         //functions
@@ -58,10 +58,10 @@ export default class ImageTextSection extends React.Component {
 
         //Check to see if the image url provided has https? if so don't prepend site URL
         var imageURL;
-        if(this.props.bgImageURL.match(/https?:\/\//)) {
-            imageURL = this.props.bgImageURL;
+        if(this.props.bgImageUrl.match(/https?:\/\//)) {
+            imageURL = this.props.bgImageUrl;
         } else {
-            imageURL = this.props.siteURL + this.props.bgImageURL;
+            imageURL = this.props.siteURL + this.props.bgImageUrl;
         }
 
         var styles ={

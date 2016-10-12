@@ -8,24 +8,29 @@ import React from 'react';
 export default class SectionSelect extends React.Component {
 
     static PropTypes = {
-        sectionsObject: React.PropTypes.object,
-        selectedObjectKey: React.PropTypes.number,
-        onEditorSelectChange: React.PropTypes.func
+        sections: React.PropTypes.object,
+        selectedSectionIndex: React.PropTypes.number,
+        onEditorSelectChange: React.PropTypes.func,
+        defaultSections: React.PropTypes.object
     };
 
     handleSelectChange = (event) => {
-        this.props.onEditorSelectChange(event);
+        this.props.onEditorSelectChange(this.props.selectedSectionIndex,this.props.defaultSections.get(event.target.value));
     };
 
+    testClick = () => {
+        console.log(this.props.defaultSections)
+    };
     /**
      * render out the select input
      * @returns {XML}
      */
-    render(){
+    render() {
         return (
             <div className="editor-section select">
-                <h3>Change Section Type</h3>
-                <select className="section-select" onChange={this.handleSelectChange} value={this.props.sectionsObject[this.props.selectedObjectKey].id}>
+                <h3 onClick={this.testClick}>Change Section Type</h3>
+                <select className="section-select" onChange={this.handleSelectChange}
+                        value={this.props.sections[this.props.selectedSectionIndex].id}>
                     <option value="agency-details">Agency Details</option>
                     <option value="button-link">Agency Button Link</option>
                     <option value="image">Image</option>
@@ -36,6 +41,5 @@ export default class SectionSelect extends React.Component {
                 </select>
             </div>
         );
-
     }
 }

@@ -10,15 +10,17 @@ import ListOption from './editorOptions/ListOption.jsx'
 export default class Editor extends React.Component {
 
     static propTypes = {
-        selectedObjectKey: React.PropTypes.number,
-        sectionsObject: React.PropTypes.array,
+        selectedSectionIndex: React.PropTypes.number,
+        sections: React.PropTypes.array,
+        defaultSections: React.PropTypes.object,
 
         //functions
         onEdit: React.PropTypes.func,
-        onEditorPositionClick: React.PropTypes.func,
+        onShiftSectionClick: React.PropTypes.func,
         onEditorAddClick: React.PropTypes.func,
         onEditorSelectChange: React.PropTypes.func,
         onEditorDeleteClick: React.PropTypes.func,
+        onSetSelectedSectionIndex: React.PropTypes.func,
 
         onListInnerListInputChange: React.PropTypes.func,
         onListRemoveListClick: React.PropTypes.func,
@@ -26,16 +28,19 @@ export default class Editor extends React.Component {
     };
 
     handleChange = (event) => {
-        this.props.onEdit(this.props.selectedObjectKey, event)
+        this.props.onEdit(this.props.selectedSectionIndex, event.target.name, event.target.value)
     };
 
     handlePositionClick = (event,right) => {
-        if(right){
-            this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey+1);
-        } else {
-            this.props.onEditorPositionClick(this.props.selectedObjectKey, this.props.selectedObjectKey-1);
+        var index = this.props.selectedSectionIndex;
+        var newIndex;
+        if(!right && this.props.selectedSectionIndex > 0){
+            newIndex = this.props.selectedSectionIndex - 1;
+        } else if(right) {
+            newIndex = this.props.selectedSectionIndex + 1;
         }
 
+        this.props.onShiftSectionClick(index, newIndex);
     };
 
     handleAddClick = () => {
@@ -43,7 +48,9 @@ export default class Editor extends React.Component {
     };
 
     handleDeleteClick = () => {
-        this.props.onEditorDeleteClick(this.props.selectedObjectKey);
+        if(this.props.selectedSectionIndex > 0) {
+            this.props.onEditorDeleteClick(this.props.selectedSectionIndex);
+        }
     };
 
     /**
@@ -55,7 +62,7 @@ export default class Editor extends React.Component {
         var editorContentArray = [];
         var key = 0;
 
-        var selectedObject =  this.props.sectionsObject[this.props.selectedObjectKey];
+        var selectedObject =  this.props.sections[this.props.selectedSectionIndex];
 
         for(let propertyName in selectedObject) {
 
@@ -113,9 +120,10 @@ export default class Editor extends React.Component {
                     <h3>Delete</h3>
                     <div className="button left" onClick={this.handleDeleteClick}>Delete</div>
                 </div>
-                <SectionSelect sectionsObject={this.props.sectionsObject}
-                               selectedObjectKey={this.props.selectedObjectKey}
+                <SectionSelect sections={this.props.sections}
+                               selectedSectionIndex={this.props.selectedSectionIndex}
                                onEditorSelectChange={this.props.onEditorSelectChange}
+                               defaultSections={this.props.defaultSections}
                 />
                 <div className="section-settings">
                     {this.renderOptions()}

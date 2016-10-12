@@ -65,7 +65,7 @@ export default class Grid extends React.Component {
                     return (
                         <AgencyMapSection
                             key={index}
-                            index={idex}
+                            index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
                             onSectionClick={this.props.onSectionClick}
                             {...section}
@@ -89,7 +89,7 @@ export default class Grid extends React.Component {
                             index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
                             onSectionClick={this.props.onSectionClick}
-                            siteURL={this.props.sections[i].siteURL}
+                            siteURL={this.props.siteURL}
                             {...section}
                         />
                     );
@@ -99,7 +99,7 @@ export default class Grid extends React.Component {
                             key={index}
                             index={index}
                             selectedObjectKey={this.props.selectedObjectKey}
-                            siteURL={this.props.sections[i].siteURL}
+                            siteURL={this.props.siteURL}
                             onSectionClick={this.props.onSectionClick}
                             {...section}
                         />
