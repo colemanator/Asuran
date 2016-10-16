@@ -3,19 +3,24 @@
  */
 'use strict';
 
-import {Record} from 'immutable'
+import {Map} from 'immutable';
 
-const initial = {
+const initial = Map({
+    type: '',
     active: false,
     title: '',
-    content: {},
-    button: ''
-};
+    content: '',
+    error: ''
+});
 
 export default function window(state = initial, action){
     switch (action.type){
         case 'SET_WINDOW':
-            return action.window;
+            return Map(action.window);
+        case 'TOGGLE_WINDOW_ACTIVE':
+            return state.set('active',!state.get('active'));
+        case 'IMPORT_SECTIONS':
+            return state.set('active',!state.get('active'));
         default:
             return state;
     }

@@ -22,6 +22,8 @@ export default function sections (state = initial, action){
         case 'SHIFT_SECTION':
             let tempSection = state.get(action.index);
             return state.delete(action.index).insert(action.newIndex,tempSection);
+        case 'IMPORT_SECTIONS':
+            return List(action.sections.map((section) => {return Map(section)}));
         default:
             return state;
     }

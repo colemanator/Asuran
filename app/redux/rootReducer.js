@@ -11,13 +11,15 @@ import siteURL from './reducers/SiteURL';
 import selectedSectionIndex from './reducers/SelectedSectionIndex';
 import sections from './reducers/sections';
 import window from './reducers/window'
+import version from './reducers/version'
 
 const reducers = combineReducers({
     defaultSections,
     siteURL,
     selectedSectionIndex,
     sections,
-    window
+    window,
+    version
 });
 
 export default reducers;

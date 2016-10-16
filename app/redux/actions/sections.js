@@ -10,6 +10,7 @@ export const UPDATE_SECTION = 'UPDATE_SECTION';
 export const DELETE_SECTION = 'DELETE_SECTION';
 export const ADD_SECTION = 'ADD_SECTION';
 export const SHIFT_SECTION = 'SHIFT_SECTION';
+export const IMPORT_SECTIONS = 'IMPORT_SECTIONS';
 
 
 export function setSelectedSectionIndex(index){
@@ -34,4 +35,8 @@ export function addSection() {
 
 export function shitSection(index, newIndex) {
     return {type: SHIFT_SECTION, index, newIndex}
+}
+
+export function importSections(sections, version) {
+    return {type: IMPORT_SECTIONS, sections, version}
 }
