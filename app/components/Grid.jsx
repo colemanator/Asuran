@@ -3,16 +3,16 @@
  */
 'use strict';
 
-import React from 'react';
+import React from 'react'
 
 //sections
-import AgencyDetailsSection from './sections/AgencyDetailsSection.jsx';
-import AgencyMapSection from './sections/AgencyMapSection.jsx';
-import ButtonLinkSection from './sections/ButtonLinkSection.jsx';
-import EmptySection from './sections/EmptySection.jsx';
-import ImageSection from './sections/ImageSection.jsx';
-import ImageTextSection from './sections/ImageTextSection.jsx';
-import LinkListSection from './sections/LinkListSection.jsx';
+import AgencyDetailsSection from './sections/AgencyDetailsSection.jsx'
+import AgencyMapSection from './sections/AgencyMapSection.jsx'
+import ButtonLinkSection from './sections/ButtonLinkSection.jsx'
+import EmptySection from './sections/EmptySection.jsx'
+import ImageSection from './sections/ImageSection.jsx'
+import ImageTextSection from './sections/ImageTextSection.jsx'
+import LinkListSection from './sections/LinkListSection.jsx'
 
 /**
  * Grid component responsible for generating the sections based on the sections Object provided

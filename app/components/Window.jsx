@@ -5,7 +5,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux'
-import {setWindow, toggleWindowActive} from '../redux/actions/app'
+import {toggleWindowActive} from '../redux/actions/app'
 import {importSections} from '../redux/actions/sections'
 
 import Message from './windows/Message.jsx'

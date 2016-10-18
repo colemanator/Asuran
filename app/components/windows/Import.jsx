@@ -17,6 +17,7 @@ export default class Import extends React.Component {
 
     static propTypes = {
         defaultSections: React.PropTypes.object,
+
         //functions
         onCloseClick: React.PropTypes.func,
         onImportSections: React.PropTypes.func

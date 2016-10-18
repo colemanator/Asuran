@@ -23,7 +23,12 @@ export default function sections (state = initial, action){
             let tempSection = state.get(action.index);
             return state.delete(action.index).insert(action.newIndex,tempSection);
         case 'IMPORT_SECTIONS':
-            return List(action.sections.map((section) => {return Map(section)}));
+            return List(action.sections.map((section) => {
+                if(section.hasOwnProperty('list') && section.id == 'link-list'){
+                    section.list = List(section.list.map(item => Map(item)));
+                }
+                return Map(section)
+            }));
         case 'SECTION_LIST_UPDATE':
             return state.update(action.index,(section) => {
                 return section.set(action.key, section.get(action.key).update(action.itemIndex,(listItem) => {

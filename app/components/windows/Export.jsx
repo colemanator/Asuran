@@ -16,6 +16,9 @@ export default class Export extends React.Component {
         onCloseClick: React.PropTypes.func
     };
 
+    /**
+     * copies the text in the teatarea to clipboard
+     */
     onCopyClick = () => {
         document.getElementById('export-content').select();
         try{

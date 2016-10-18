@@ -40,7 +40,9 @@ export default class Editor extends React.Component {
             newIndex = this.props.selectedSectionIndex + 1;
         }
 
-        this.props.onShiftSectionClick(index, newIndex);
+        if(newIndex) {
+            this.props.onShiftSectionClick(index, newIndex);
+        }
     };
 
     handleAddClick = () => {

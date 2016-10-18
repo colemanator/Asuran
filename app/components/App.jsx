@@ -13,8 +13,7 @@ import {setSiteURL, setExportWindow, setImportWindow} from '../redux/actions/app
 import {setSection, setSelectedSectionIndex, shitSection, updateSection, deleteSection, addSection, sectionListAdd, sectionListDelete, sectionListUpdate} from '../redux/actions/sections'
 
 /**
- * App is the entry point react component and the state holder for the application, it handles all changes by calling
- * methods on the sections object which are delegated to the sectionsModel.
+ * App is the entry point react component and where we primarily connect Redux
  */
 class App extends React.Component {
 

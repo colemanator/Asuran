@@ -3,7 +3,12 @@
  */
 'use strict';
 
-
+/**
+ * Tries to convert JSON string into sections
+ * @param JSONString {string}
+ * @param defaults {object} Map
+ * @returns {object}
+ */
 export function importSections(JSONString,defaults){
 
     try{
@@ -48,6 +53,11 @@ export function importSections(JSONString,defaults){
 }
 
 
+/**
+ * exports the sections as JSON, removes any empty or invalid values
+ * @param sections {object}
+ * @param version {number}
+ */
 export function exportSections(sections,version){
 
     //remove any sections with ID empty
@@ -73,6 +83,12 @@ export function exportSections(sections,version){
 }
 
 
+/**
+ * Checks imported sections are valid by comparing them against the defaults, attempts to correct any errors
+ * @param sections {object}
+ * @param defaults {object}
+ * @returns {object}
+ */
 export function processSections(sections, defaults){
     return sections.map((section) => {
 
