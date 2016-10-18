@@ -36,6 +36,13 @@ var config = {
                 test: /\.less?/,
                 include: LESS_DIR,
                 loader: ExtractTextPlugin.extract("style?sourceMap", "css?sourceMap!autoprefixer?browsers=last 2 version!less")
+            },
+            {
+
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'url?limit=10000'
+                ]
             }
         ]
     },
