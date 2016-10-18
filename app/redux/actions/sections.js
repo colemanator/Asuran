@@ -12,6 +12,10 @@ export const ADD_SECTION = 'ADD_SECTION';
 export const SHIFT_SECTION = 'SHIFT_SECTION';
 export const IMPORT_SECTIONS = 'IMPORT_SECTIONS';
 
+export const SECTION_LIST_UPDATE = 'SECTION_LIST_UPDATE';
+export const SECTION_LIST_ADD = 'SECTION_LIST_ADD';
+export const SECTION_LIST_DELETE = 'SECTION_LIST_DELETE';
+
 
 export function setSelectedSectionIndex(index){
     return {type: SET_SELECTED_SECTION, index}
@@ -39,4 +43,16 @@ export function shitSection(index, newIndex) {
 
 export function importSections(sections, version) {
     return {type: IMPORT_SECTIONS, sections, version}
+}
+
+export function sectionListUpdate(index, key, itemIndex, itemKey, itemValue) {
+    return {type: SECTION_LIST_UPDATE, index, key, itemIndex, itemKey, itemValue}
+}
+
+export function sectionListAdd(index, key) {
+    return {type: SECTION_LIST_ADD, index, key}
+}
+
+export function sectionListDelete(index, key, itemIndex) {
+    return {type: SECTION_LIST_DELETE, index, key, itemIndex}
 }

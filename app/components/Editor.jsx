@@ -75,6 +75,7 @@ export default class Editor extends React.Component {
                     <div key={key}>
                         <h4>{propertyName}</h4>
                         <ListOption
+                            selectedSectionIndex={this.props.selectedSectionIndex}
                             sectionOptionList={selectedObject[propertyName]}
                             onAddListClick={this.props.onListAddListClick}
                             onRemoveListClick={this.props.onListRemoveListClick}

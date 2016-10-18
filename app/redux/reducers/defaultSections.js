@@ -3,7 +3,7 @@
  */
 'use strict';
 
-import {Map} from 'immutable'
+import {Map, List} from 'immutable'
 
 const defaultObjects = Map({
     'agency-details': {
@@ -43,28 +43,28 @@ const defaultObjects = Map({
         "link_color": "black",
         "heighlight-color": "",
         title: "SiteLoft",
-        list: [
-            {
+        list: List([
+            Map({
                 text: "Contact us",
                 href: "/offcanvas_form/?location=agency_contact"
-            },
-            {
+            }),
+            Map({
                 text: "Application form",
                 href: "/offcanvas_form/?location=sales_appraisal"
-            },
-            {
+            }),
+            Map({
                 text: "Open to inspect",
                 href: "/openhomes/?type=ofi"
-            },
-            {
+            }),
+            Map({
                 text: "Request a rental appraisal",
                 href: "/offcanvas_form/?location=rental_appraisal"
-            },
-            {
+            }),
+            Map({
                 text: "About us",
                 href: "/agency/loft-realty"
-            }
-        ]
+            })
+        ])
     },
     'agency-map': {
         id: "agency-map",

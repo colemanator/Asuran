@@ -10,7 +10,7 @@ import Grid from './Grid.jsx'
 import HeaderContainer from './HeaderContainer.jsx'
 import Window from './Window.jsx'
 import {setSiteURL, setExportWindow, setImportWindow} from '../redux/actions/app'
-import {setSection, setSelectedSectionIndex, shitSection, updateSection, deleteSection, addSection} from '../redux/actions/sections'
+import {setSection, setSelectedSectionIndex, shitSection, updateSection, deleteSection, addSection, sectionListAdd, sectionListDelete, sectionListUpdate} from '../redux/actions/sections'
 
 /**
  * App is the entry point react component and the state holder for the application, it handles all changes by calling
@@ -60,10 +60,9 @@ class App extends React.Component {
                             onEditorDeleteClick={this.props.onDeleteSectionClick}
                             onSetSelectedSectionIndex={this.props.onSetSelectedSectionIndex}
 
-                            //todo this functionality will need to be refactored
-                            onListAddListClick={this.handleAddListClick}
-                            onListRemoveListClick={this.handleRemoveListClick}
-                            onListInnerListInputChange={this.handleEditorInnerListInputChange}
+                            onListAddListClick={this.props.sectionListAdd}
+                            onListRemoveListClick={this.props.sectionListDelete}
+                            onListInnerListInputChange={this.props.sectionListUpdate}
                     />
                     <Grid sections={this.props.sections}
                           selectedObjectKey={this.props.selectedSectionIndex}
@@ -79,7 +78,13 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        sections: state.sections.toArray().map((section) => {return section.toObject()}),
+        sections: state.sections.toArray().map((section) => {
+            section = section.toObject();
+            if(section.id == 'link-list' && section.hasOwnProperty('list')){
+                section.list = section.list.toArray().map((item) => {return item.toObject()})
+            }
+            return section;
+        }),
         defaultSections: state.defaultSections,
         siteURL: state.siteURL,
         selectedSectionIndex: state.selectedSectionIndex
@@ -114,7 +119,17 @@ const mapDispatchToProps = (dispatch) => {
         },
         onSetImportWindow: () => {
             dispatch(setImportWindow())
+        },
+        sectionListUpdate: (index, key, itemIndex, itemKey, itemValue) => {
+            dispatch(sectionListUpdate(index, key, itemIndex, itemKey, itemValue))
+        },
+        sectionListAdd: (index, key) => {
+            dispatch(sectionListAdd(index, key))
+        },
+        sectionListDelete: (index, key, itemIndex) => {
+            dispatch(sectionListDelete(index, key, itemIndex))
         }
+
     };
 };
 

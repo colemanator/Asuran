@@ -24,6 +24,20 @@ export default function sections (state = initial, action){
             return state.delete(action.index).insert(action.newIndex,tempSection);
         case 'IMPORT_SECTIONS':
             return List(action.sections.map((section) => {return Map(section)}));
+        case 'SECTION_LIST_UPDATE':
+            return state.update(action.index,(section) => {
+                return section.set(action.key, section.get(action.key).update(action.itemIndex,(listItem) => {
+                    return listItem.set(action.itemKey,action.itemValue)
+                }));
+            });
+        case 'SECTION_LIST_ADD':
+            return state.update(action.index,(section) => {
+                return section.set(action.key,section.get(action.key).push(Map({text: '', href: ''})));
+            });
+        case 'SECTION_LIST_DELETE':
+            return state.update(action.index,(section) => {
+                return section.set(action.key,section.get(action.key).delete(action.itemIndex));
+            });
         default:
             return state;
     }
